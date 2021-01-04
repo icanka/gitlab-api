@@ -1,0 +1,3 @@
+curl -k --request PUT  --header "PRIVATE-TOKEN: Y75WeQJrqNB7tSSUzvQ3" "https://jenkins.local:8090/api/v4/projects/8?name=jenkins-conf"
+curl -k  --header "PRIVATE-TOKEN: Y75WeQJrqNB7tSSUzvQ3" "https://jenkins.local:8090/api/v4/projects/:3?name=jenkins-test-api"
+curl -k  --header "PRIVATE-TOKEN: Y75WeQJrqNB7tSSUzvQ3" "https://jenkins.local:8090/api/v4/projects?simple=true"

@@ -7,7 +7,7 @@ from pypi_helper import (
     extract_package_info_dictionary,
     download_file,
 )
-from pypi_helper_mock import download_file
+#from pypi_helper_mock import download_file
 
 # GET /pypi/<project_name>/json
 # TODO: check if the file is already downloaded with the same digest.
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     #base_path = os.getcwd()
     base_path = "/home/izzetcan/LinuxExtra/"
     # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
-    packages = {"python-gitlab"}
+    packages = {"python-gitlab", "python-active-directory"}
 
     package_info_list = []
     dependency_set = set()
@@ -27,8 +27,8 @@ if __name__ == "__main__":
     downloaded_packages = set()
 
     base_url = "https://pypi.org/pypi/package_name/json"
-    python_version = "source"
-    package_type = "bdist_wheel"
+    python_version = "source"      # do NOT download 'source' versions.
+    package_type = "bdist_wheel"   # download only bdist_wheel type packages.
 
     cwd = os.getcwd()
 

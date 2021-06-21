@@ -1,4 +1,5 @@
 import hashlib
+import os
 import re
 
 import requests
@@ -41,13 +42,16 @@ def extract_package_info_dictionary(
 #  zipp;python_version<'3.8'
 # coverage[toml]
 # requirementslib;
+import parseJson
 def extract_dependency(json_data, extras=True):
-    suffix_list = ["]"]
     dist_set = set()
     requires_dist = search_key_recursive_return(json_data, "requires_dist")
 
+
     if requires_dist is not None:
         for dist in requires_dist:
+            parseJson.save_text(dist, 'requires_dict', '/home/raflman/Documents/gitlab-api')
+            #print(dist)
             splitted_dist = re.split("[\][/!<>=(); ']+", dist)
             if extras is False and "extra" in splitted_dist:
                 break
@@ -60,6 +64,8 @@ def extract_dependency(json_data, extras=True):
             # if the dependency is given as extra. Ex: 'coverage[toml]'
             # for char in filter(dist.endswith, suffix_list): dist = dist.split('[')[0]
             dist_set.add(splitted_dist[0])
+    else:
+        print("dist is NONE")
 
     return dist_set
 
@@ -82,6 +88,8 @@ def calculate_sha256_digest(filename):
             sha256_digest.update(byte_block)
     return sha256_digest.hexdigest()
 
+def save_json_response(json_data):
+    package_name = 'test'
 
 def if_empty(item):
     return True if item == "" else False

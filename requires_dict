@@ -1,0 +1,637 @@
+requests (>=2.22.0)
+requests-toolbelt (>=0.9.1)
+argcomplete (<2,>=1.10.0) ; extra == 'autocompletion'
+PyYaml (>=5.2) ; extra == 'yaml'
+python-ldap (>=3.0)
+dnspython
+ply (>=3.8)
+six
+importlib-metadata (<5,>=0.23) ; python_version == "2.7"
+importlib-metadata (<5,>=0.23) ; python_version == "3.5"
+importlib-metadata (<5,>=0.23) ; python_version == "3.6"
+importlib-metadata (<5,>=0.23) ; python_version == "3.7"
+coverage ; extra == 'test'
+flake8 ; extra == 'test'
+pexpect ; extra == 'test'
+wheel ; extra == 'test'
+cryptography (>=2.6) ; extra == 'dnssec'
+requests ; extra == 'doh'
+requests-toolbelt ; extra == 'doh'
+idna (>=2.1) ; extra == 'idna'
+curio (>=1.2) ; extra == 'curio'
+sniffio (>=1.1) ; extra == 'curio'
+trio (>=0.14.0) ; extra == 'trio'
+sniffio (>=1.1) ; extra == 'trio'
+chardet (<5,>=3.0.2)
+idna (<3,>=2.5)
+urllib3 (<1.27,>=1.21.1)
+certifi (>=2017.4.17)
+pyOpenSSL (>=0.14) ; extra == 'security'
+cryptography (>=1.3.4) ; extra == 'security'
+PySocks (!=1.5.7,>=1.5.6) ; extra == 'socks'
+win-inet-pton ; (sys_platform == "win32" and python_version == "2.7") and extra == 'socks'
+requests (<3.0.0,>=2.0.1)
+ptyprocess (>=0.5)
+zipp (>=0.5)
+typing-extensions (>=3.6.4) ; python_version < "3.8"
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (>=4.6) ; extra == 'testing'
+pytest-checkdocs (>=2.4) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler (>=1.0.1) ; extra == 'testing'
+packaging ; extra == 'testing'
+pep517 ; extra == 'testing'
+pyfakefs ; extra == 'testing'
+flufl.flake8 ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+importlib-resources (>=1.3) ; (python_version < "3.9") and extra == 'testing'
+contextvars (>=2.1) ; python_version < '3.7'
+brotlipy (>=0.6.0) ; extra == 'brotli'
+pyOpenSSL (>=0.14) ; extra == 'secure'
+cryptography (>=1.3.4) ; extra == 'secure'
+idna (>=2.0.0) ; extra == 'secure'
+certifi ; extra == 'secure'
+ipaddress ; (python_version == "2.7") and extra == 'secure'
+PySocks (!=1.5.7,<2.0,>=1.5.6) ; extra == 'socks'
+attrs (>=19.2.0)
+sortedcontainers
+async-generator (>=1.9)
+idna
+outcome
+sniffio
+cffi (>=1.14) ; os_name == "nt" and implementation_name != "pypy"
+contextvars (>=2.1) ; python_version < "3.7"
+pytest (>=3.0.0) ; extra == 'test'
+pytest-cov ; extra == 'test'
+pyflakes (<2.4.0,>=2.3.0)
+pycodestyle (<2.8.0,>=2.7.0)
+mccabe (<0.7.0,>=0.6.0)
+configparser ; python_version < "3.2"
+functools32 ; python_version < "3.2"
+enum34 ; python_version < "3.4"
+typing ; python_version < "3.5"
+importlib-metadata ; python_version < "3.8"
+toml ; extra == 'toml'
+cryptography (>=3.2)
+six (>=1.5.2)
+sphinx ; extra == 'docs'
+sphinx-rtd-theme ; extra == 'docs'
+flaky ; extra == 'test'
+pretend ; extra == 'test'
+pytest (>=3.0.1) ; extra == 'test'
+toml
+jaraco.functools
+jaraco.context
+more-itertools
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (!=3.7.3,>=3.5) ; extra == 'testing'
+pytest-checkdocs (>=1.2.3) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy") and extra == 'testing'
+attrs (>=19.0)
+filelock (>=3.0)
+pytest (>=3.5)
+mypy (>=0.500) ; python_version < "3.8"
+mypy (>=0.700) ; python_version >= "3.8" and python_version < "3.9"
+mypy (>=0.780) ; python_version >= "3.9"
+zipp (>=3.1.0) ; python_version < "3.10"
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (>=4.6) ; extra == 'testing'
+pytest-checkdocs (>=2.4) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler (>=1.0.1) ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+pycparser
+flake8 (>=3.5)
+
+
+
+
+
+
+hypothesis ; extra == 'dev'
+pympler ; extra == 'dev'
+pytest (>=4.3.0) ; extra == 'dev'
+six ; extra == 'dev'
+mypy ; extra == 'dev'
+pytest-mypy-plugins ; extra == 'dev'
+zope.interface ; extra == 'dev'
+furo ; extra == 'dev'
+sphinx ; extra == 'dev'
+sphinx-notfound-page ; extra == 'dev'
+pre-commit ; extra == 'dev'
+furo ; extra == 'docs'
+sphinx ; extra == 'docs'
+zope.interface ; extra == 'docs'
+sphinx-notfound-page ; extra == 'docs'
+coverage[toml] (>=5.0.2) ; extra == 'tests'
+hypothesis ; extra == 'tests'
+pympler ; extra == 'tests'
+pytest (>=4.3.0) ; extra == 'tests'
+six ; extra == 'tests'
+mypy ; extra == 'tests'
+pytest-mypy-plugins ; extra == 'tests'
+zope.interface ; extra == 'tests'
+coverage[toml] (>=5.0.2) ; extra == 'tests_no_zope'
+hypothesis ; extra == 'tests_no_zope'
+pympler ; extra == 'tests_no_zope'
+pytest (>=4.3.0) ; extra == 'tests_no_zope'
+six ; extra == 'tests_no_zope'
+mypy ; extra == 'tests_no_zope'
+pytest-mypy-plugins ; extra == 'tests_no_zope'
+python-dateutil
+importlib-metadata ; python_version < "3.8"
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (>=4.6) ; extra == 'testing'
+pytest-checkdocs (>=2.4) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler (>=1.0.1) ; extra == 'testing'
+path.py ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+sphinx
+docutils (<0.17)
+transifex-client ; extra == 'dev'
+sphinxcontrib-httpdomain ; extra == 'dev'
+bump2version ; extra == 'dev'
+sphinxcontrib-applehelp
+sphinxcontrib-devhelp
+sphinxcontrib-jsmath
+sphinxcontrib-htmlhelp
+sphinxcontrib-serializinghtml
+sphinxcontrib-qthelp
+Jinja2 (>=2.3)
+Pygments (>=2.0)
+docutils (<0.18,>=0.14)
+snowballstemmer (>=1.1)
+babel (>=1.3)
+alabaster (<0.8,>=0.7)
+imagesize
+requests (>=2.5.0)
+setuptools
+packaging
+colorama (>=0.3.5) ; sys_platform=="win32"
+sphinxcontrib-websupport ; extra == 'docs'
+flake8 (>=3.5.0) ; extra == 'lint'
+isort ; extra == 'lint'
+mypy (>=0.800) ; extra == 'lint'
+docutils-stubs ; extra == 'lint'
+pytest ; extra == 'test'
+pytest-cov ; extra == 'test'
+html5lib ; extra == 'test'
+cython ; extra == 'test'
+typed-ast ; (python_version < "3.8") and extra == 'test'
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (>=4.6) ; extra == 'testing'
+pytest-checkdocs (>=1.2.3) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler ; extra == 'testing'
+jaraco.itertools ; extra == 'testing'
+func-timeout ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy") and extra == 'testing'
+setuptools
+importlib-metadata ; python_version < "3.8"
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (>=4.6) ; extra == 'testing'
+pytest-checkdocs (>=2.4) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler (>=1.0.1) ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+pyparsing (>=2.0.2)
+typing (>=3.7.4) ; python_version < "3.5"
+attrs (>=19.2.0)
+iniconfig
+packaging
+pluggy (<1.0.0a1,>=0.12)
+py (>=1.8.2)
+toml
+importlib-metadata (>=0.12) ; python_version < "3.8"
+atomicwrites (>=1.0) ; sys_platform == "win32"
+colorama ; sys_platform == "win32"
+argcomplete ; extra == 'testing'
+hypothesis (>=3.56) ; extra == 'testing'
+mock ; extra == 'testing'
+nose ; extra == 'testing'
+requests ; extra == 'testing'
+xmlschema ; extra == 'testing'
+docutils (>=0.15)
+pep517
+importlib-metadata (>=4)
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (>=4.6) ; extra == 'testing'
+pytest-checkdocs (>=2.4) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler (>=1.0.1) ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (>=4.6) ; extra == 'testing'
+pytest-checkdocs (>=1.2.3) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy") and extra == 'testing'
+pytest (>=4.6)
+coverage (>=5.2.1)
+toml
+fields ; extra == 'testing'
+hunter ; extra == 'testing'
+process-tests ; extra == 'testing'
+six ; extra == 'testing'
+pytest-xdist ; extra == 'testing'
+virtualenv ; extra == 'testing'
+toml
+importlib_metadata;python_version<'3.8'
+zipp;python_version<'3.8'
+attrs (>=19.2.0)
+zipp (>=0.5)
+typing-extensions (>=3.6.4) ; python_version < "3.8"
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (>=4.6) ; extra == 'testing'
+pytest-checkdocs (>=2.4) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler (>=1.0.1) ; extra == 'testing'
+packaging ; extra == 'testing'
+pep517 ; extra == 'testing'
+pyfakefs ; extra == 'testing'
+flufl.flake8 ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+importlib-resources (>=1.3) ; (python_version < "3.9") and extra == 'testing'
+more-itertools
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (>=4.6) ; extra == 'testing'
+pytest-checkdocs (>=2.4) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler (>=1.0.1) ; extra == 'testing'
+jaraco.classes ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+manhole (>=1.5) ; platform_system != "Windows"
+pytest (>=6.0.0)
+mypy (>=0.790)
+decorator
+pyyaml
+pystache (>=0.5.4)
+appdirs (<2,>=1.4.3)
+distlib (<1,>=0.3.1)
+filelock (<4,>=3.0.0)
+six (<2,>=1.9.0)
+pathlib2 (<3,>=2.3.3) ; python_version < "3.4" and sys_platform != "win32"
+importlib-resources (>=1.0) ; python_version < "3.7"
+importlib-metadata (>=0.12) ; python_version < "3.8"
+proselint (>=0.10.2) ; extra == 'docs'
+sphinx (>=3) ; extra == 'docs'
+sphinx-argparse (>=0.2.5) ; extra == 'docs'
+sphinx-rtd-theme (>=0.4.3) ; extra == 'docs'
+towncrier (>=19.9.0rc1) ; extra == 'docs'
+coverage (>=4) ; extra == 'testing'
+coverage-enable-subprocess (>=1) ; extra == 'testing'
+flaky (>=3) ; extra == 'testing'
+pytest (>=4) ; extra == 'testing'
+pytest-env (>=0.6.2) ; extra == 'testing'
+pytest-freezegun (>=0.4.1) ; extra == 'testing'
+pytest-mock (>=2) ; extra == 'testing'
+pytest-randomly (>=1) ; extra == 'testing'
+pytest-timeout (>=1) ; extra == 'testing'
+packaging (>=20.0) ; (python_version > "3.4") and extra == 'testing'
+xonsh (>=0.9.16) ; (python_version > "3.4" and python_version != "3.9") and extra == 'testing'
+pipreqs; extra == "pipfile_deprecated_finder" or extra == "requirements_deprecated_finder"
+requirementslib; extra == "pipfile_deprecated_finder"
+pip-api; extra == "requirements_deprecated_finder"
+colorama (>=0.4.3,<0.5.0); extra == "colors"
+flake8 ; extra == 'lint'
+mypy ; extra == 'lint'
+docutils-stubs ; extra == 'lint'
+pytest ; extra == 'test'
+pytz (>=2015.7)
+flake8 ; extra == 'lint'
+mypy ; extra == 'lint'
+docutils-stubs ; extra == 'lint'
+pytest ; extra == 'test'
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (!=3.7.3,>=3.5) ; extra == 'testing'
+pytest-checkdocs (>=1.2.3) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy") and extra == 'testing'
+execnet (>=1.1)
+pytest (>=6.0.0)
+pytest-forked
+psutil (>=3.0) ; extra == 'psutil'
+filelock ; extra == 'testing'
+flake8 ; extra == 'lint'
+mypy ; extra == 'lint'
+docutils-stubs ; extra == 'lint'
+pytest ; extra == 'test'
+typing-extensions (>=3.7.4)
+mypy-extensions (<0.5.0,>=0.4.3)
+toml
+typed-ast (<1.5.0,>=1.4.0) ; python_version < "3.8"
+psutil (>=4.0) ; extra == 'dmypy'
+typed-ast (<1.5.0,>=1.4.0) ; extra == 'python2'
+path
+sphinx ; extra == 'docs'
+jaraco.packaging (>=3.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (!=3.7.3,>=3.5) ; extra == 'testing'
+pytest-checkdocs (>=1.2.3) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-black-multipy ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+appdirs ; extra == 'testing'
+packaging ; extra == 'testing'
+pygments ; extra == 'testing'
+cfgv (>=2.0.0)
+identify (>=1.0.0)
+nodeenv (>=0.11.1)
+pyyaml (>=5.1)
+toml
+virtualenv (>=20.0.8)
+importlib-resources ; python_version < "3.7"
+importlib-metadata ; python_version < "3.8"
+sphinxcontrib-serializinghtml
+flake8 ; extra == 'lint'
+pytest ; extra == 'test'
+sqlalchemy ; extra == 'test'
+whoosh ; extra == 'test'
+Sphinx ; extra == 'test'
+elementpath (<3.0.0,>=2.2.2)
+elementpath (<3.0.0,>=2.2.2) ; extra == 'codegen'
+jinja2 ; extra == 'codegen'
+tox ; extra == 'dev'
+coverage ; extra == 'dev'
+lxml ; extra == 'dev'
+elementpath (<3.0.0,>=2.2.2) ; extra == 'dev'
+memory-profiler ; extra == 'dev'
+Sphinx ; extra == 'dev'
+sphinx-rtd-theme ; extra == 'dev'
+jinja2 ; extra == 'dev'
+elementpath (<3.0.0,>=2.2.2) ; extra == 'docs'
+Sphinx ; extra == 'docs'
+sphinx-rtd-theme ; extra == 'docs'
+jinja2 ; extra == 'docs'
+docutils (==0.14)
+MarkupSafe (>=2.0)
+Babel (>=2.7) ; extra == 'i18n'
+more-itertools (>=4.0.0)
+inflect
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (>=4.6) ; extra == 'testing'
+pytest-checkdocs (>=2.4) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler (>=1.0.1) ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+flake8 ; extra == 'lint'
+mypy ; extra == 'lint'
+docutils-stubs ; extra == 'lint'
+pytest ; extra == 'test'
+html5lib ; extra == 'test'
+attrs (>=19.2.0)
+sortedcontainers (<3.0.0,>=2.1.0)
+black (>=19.10b0) ; extra == 'all'
+click (>=7.0) ; extra == 'all'
+django (>=2.2) ; extra == 'all'
+dpcontracts (>=0.4) ; extra == 'all'
+lark-parser (>=0.6.5) ; extra == 'all'
+libcst (>=0.3.16) ; extra == 'all'
+numpy (>=1.9.0) ; extra == 'all'
+pandas (>=0.25) ; extra == 'all'
+pytest (>=4.6) ; extra == 'all'
+python-dateutil (>=1.4) ; extra == 'all'
+pytz (>=2014.1) ; extra == 'all'
+redis (>=3.0.0) ; extra == 'all'
+rich (>=9.0.0) ; extra == 'all'
+importlib-resources (>=3.3.0) ; (python_version < "3.7") and extra == 'all'
+importlib-metadata (>=3.6) ; (python_version < "3.8") and extra == 'all'
+backports.zoneinfo (>=0.2.1) ; (python_version < "3.9") and extra == 'all'
+tzdata (>=2020.4) ; (sys_platform == "win32") and extra == 'all'
+click (>=7.0) ; extra == 'cli'
+black (>=19.10b0) ; extra == 'cli'
+rich (>=9.0.0) ; extra == 'cli'
+libcst (>=0.3.16) ; extra == 'codemods'
+python-dateutil (>=1.4) ; extra == 'dateutil'
+pytz (>=2014.1) ; extra == 'django'
+django (>=2.2) ; extra == 'django'
+dpcontracts (>=0.4) ; extra == 'dpcontracts'
+black (>=19.10b0) ; extra == 'ghostwriter'
+lark-parser (>=0.6.5) ; extra == 'lark'
+numpy (>=1.9.0) ; extra == 'numpy'
+pandas (>=0.25) ; extra == 'pandas'
+pytest (>=4.6) ; extra == 'pytest'
+pytz (>=2014.1) ; extra == 'pytz'
+redis (>=3.0.0) ; extra == 'redis'
+importlib-resources (>=3.3.0) ; (python_version < "3.7") and extra == 'zoneinfo'
+backports.zoneinfo (>=0.2.1) ; (python_version < "3.9") and extra == 'zoneinfo'
+tzdata (>=2020.4) ; (sys_platform == "win32") and extra == 'zoneinfo'
+beautifulsoup4
+sphinx >= 3.0, < 5.0
+myst-parser ; extra == "doc"
+sphinx-copybutton ; extra == "doc"
+sphinx-inline-tabs ; extra == "doc"
+docutils != 0.17 ; extra == "doc"
+pytest ; extra == "test"
+pytest-cov ; extra == "test"
+pytest-xdist ; extra == "test"
+twine ; extra == 'build'
+wheel ; extra == 'build'
+blurb ; extra == 'build'
+sphinx ; extra == 'docs'
+pytest (<5.4) ; extra == 'test'
+pytest-cov ; extra == 'test'
+flake8 ; extra == 'lint'
+mypy ; extra == 'lint'
+docutils-stubs ; extra == 'lint'
+pytest ; extra == 'test'
+certifi (==2016.9.26) ; extra == 'certs'
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pygments-github-lexers (==0.0.5) ; extra == 'docs'
+sphinx-inline-tabs ; extra == 'docs'
+sphinxcontrib-towncrier ; extra == 'docs'
+wincertstore (==0.2) ; (sys_platform == "win32") and extra == 'ssl'
+pytest (>=4.6) ; extra == 'testing'
+pytest-checkdocs (>=2.4) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler (>=1.0.1) ; extra == 'testing'
+mock ; extra == 'testing'
+flake8-2020 ; extra == 'testing'
+virtualenv (>=13.0.0) ; extra == 'testing'
+pytest-virtualenv (>=1.2.7) ; extra == 'testing'
+wheel ; extra == 'testing'
+paver ; extra == 'testing'
+pip (>=19.1) ; extra == 'testing'
+jaraco.envs ; extra == 'testing'
+pytest-xdist ; extra == 'testing'
+sphinx ; extra == 'testing'
+jaraco.path (>=3.2.0) ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy" and python_version < "3.10") and extra == 'testing'
+Sphinx (>=1.5)
+six
+six (>=1.5)
+pytest ; extra == 'test'
+flake8 ; extra == 'test'
+mypy ; extra == 'test'
+importlib-metadata (>=0.12) ; python_version < "3.8"
+pre-commit ; extra == 'dev'
+tox ; extra == 'dev'
+six (>=1.9)
+webencodings
+genshi ; extra == 'all'
+chardet (>=2.2) ; extra == 'all'
+lxml ; (platform_python_implementation == 'CPython') and extra == 'all'
+chardet (>=2.2) ; extra == 'chardet'
+genshi ; extra == 'genshi'
+lxml ; (platform_python_implementation == 'CPython') and extra == 'lxml'
+hiredis (>=0.1.3) ; extra == 'hiredis'
+ipaddress ; (python_version < "3.0") and extra == 'test'
+mock ; (python_version < "3.0") and extra == 'test'
+unittest2 ; (python_version < "3.0") and extra == 'test'
+enum34 ; (python_version <= "3.4") and extra == 'test'
+pywin32 ; (sys_platform == "win32") and extra == 'test'
+wmi ; (sys_platform == "win32") and extra == 'test'
+pre-commit ; extra == 'testing'
+cssselect (>=0.7) ; extra == 'cssselect'
+html5lib ; extra == 'html5'
+BeautifulSoup4 ; extra == 'htmlsoup'
+Cython (>=0.29.7) ; extra == 'source'
+sphinx >= 3
+myst-parser ; extra == "doc"
+furo ; extra == "doc"
+pytest ; extra == "test"
+pytest-cov ; extra == "test"
+pytest-xdist ; extra == "test"
+more-itertools
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (!=3.7.3,>=3.5) ; extra == 'testing'
+pytest-checkdocs (>=1.2.3) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy") and extra == 'testing'
+freezegun (>0.3)
+pytest (>=3.0.0)
+click (>=7.1.2)
+appdirs
+toml (>=0.10.1)
+regex (>=2020.1.8)
+pathspec (<1,>=0.8.1)
+mypy-extensions (>=0.4.3)
+dataclasses (>=0.6) ; python_version < "3.7"
+typed-ast (>=1.4.2) ; python_version < "3.8"
+typing-extensions (>=3.7.4) ; python_version < "3.8"
+colorama (>=0.4.3) ; extra == 'colorama'
+aiohttp (>=3.6.0) ; extra == 'd'
+aiohttp-cors (>=0.4.0) ; extra == 'd'
+typed-ast (>=1.4.2) ; extra == 'python2'
+uvloop (>=0.15.2) ; extra == 'uvloop'
+singledispatch (>=3.6)
+pyobjc ; platform_system == "Darwin" and platform_python_implementation != "PyPy"
+sphinx ; extra == 'docs'
+jaraco.packaging (>=8.2) ; extra == 'docs'
+rst.linker (>=1.9) ; extra == 'docs'
+pytest (>=4.6) ; extra == 'testing'
+pytest-checkdocs (>=1.2.3) ; extra == 'testing'
+pytest-flake8 ; extra == 'testing'
+pytest-cov ; extra == 'testing'
+pytest-enabler ; extra == 'testing'
+pytest-black (>=0.3.7) ; (platform_python_implementation != "PyPy") and extra == 'testing'
+pytest-mypy ; (platform_python_implementation != "PyPy") and extra == 'testing'
+jaraco.windows ; (platform_system == "Windows") and extra == 'testing'
+typing-extensions (>=3.7.4.2)
+typing-inspect (>=0.4.0)
+pyyaml (>=5.2)
+dataclasses (>=0.6.0) ; python_version < "3.7"
+black (==20.8b1) ; extra == 'dev'
+codecov (>=2.1.4) ; extra == 'dev'
+coverage (>=4.5.4) ; extra == 'dev'
+fixit (==0.1.1) ; extra == 'dev'
+flake8 (>=3.7.8) ; extra == 'dev'
+hypothesis (>=4.36.0) ; extra == 'dev'
+hypothesmith (>=0.0.4) ; extra == 'dev'
+isort (==5.5.3) ; extra == 'dev'
+jupyter (>=1.0.0) ; extra == 'dev'
+nbsphinx (>=0.4.2) ; extra == 'dev'
+pyre-check (==0.0.41) ; extra == 'dev'
+sphinx-rtd-theme (>=0.4.3) ; extra == 'dev'
+prompt-toolkit (>=2.0.9) ; extra == 'dev'
+tox (>=3.18.1) ; extra == 'dev'
+six
+scandir; python_version<"3.5"
+coverage
+docopt
+yarg
+asgiref (<4,>=3.3.2)
+pytz
+sqlparse (>=0.2.2)
+argon2-cffi (>=19.1.0) ; extra == 'argon2'
+bcrypt ; extra == 'bcrypt'
+flake8 (>=3.7)
+importlib-metadata (>=0.9) ; python_version < "3.8"
+py
+pytest (>=3.10)
+pkginfo (>=1.4.2)
+readme-renderer (>=21.0)
+requests (>=2.20)
+requests-toolbelt (!=0.9.0,>=0.8.0)
+tqdm (>=4.14)
+importlib-metadata (>=3.6)
+keyring (>=15.1)
+rfc3986 (>=1.4.0)
+colorama (>=0.4.3)
+click
+click-default-group
+incremental
+jinja2
+toml
+packaging ; extra == 'dev'

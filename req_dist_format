@@ -1,0 +1,6 @@
+pytest (>=3.5)
+coverage[toml] (>=5.0.2) ; extra == 'dev'
+hypothesis ; extra == 'dev'
+pytest (>=4.3.0) ; extra == 'dev'
+pycparser
+

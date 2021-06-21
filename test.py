@@ -19,17 +19,15 @@ dist = ["coverage[toml]", "requests"]
 
 def if_empty(item):
     return True if item == "1.5.7" else False
+text="""
+pytest (>=3.5)
+coverage[toml] (>=5.0.2) ; extra == 'dev'
+hypothesis ; extra == 'dev'
+pytest (>=4.3.0) ; extra == 'dev'
+pycparser
+"""
 
-
-DATA = "Hey, you-/what] are you doing here!?"
-DATA2 = "idna (>=2.0.0) ; extra == 'secure'"
-DATA2 = "idna>=2.0.0 ; extra == 'secure'"
-DATA4 = "PySocks[toml] (!=1.5.7,<2.0,>=1.5.6) ; extra == ''''''socks'"
-splitted = re.split("[\] [/!<>=();']+", DATA4)
-print(splitted)
-list = filter(if_empty, splitted)
-
-for item in list:
+for item in text.strip().split('\n'):
     print(item)
+#splitted = re.split("[\] [/!<>=();']+", DATA4)
 
-# Prints ['Hey', 'you', 'what', 'are', 'you', 'doing', 'here']

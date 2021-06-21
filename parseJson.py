@@ -1,4 +1,5 @@
 import json
+import os
 
 
 def item_generator(json_input, lookup_key):
@@ -20,12 +21,21 @@ def item_generator2(json_input, lookup_key):
             yield from item_generator(item, lookup_key)
 
 
-with open("python-packages.json") as json_file:
-    # text_file = open("Output.txt", "w")
-    data = json.load(json_file)
-    for item in item_generator(data, "query"):
-        print(item)
-    # for p in data['rows']:
-    # print(p['project'])
-    # text_file.write(p['project'] + "\n")
-    # text_file.close()
+def save_json(json_data, filename, mode='w', path=None):
+    if not filename.endswith('.json'):
+        filename += '.json'
+    if path is None:
+        path = os.getcwd()
+    os.chdir(path)
+    with open(filename, mode) as json_file:
+        json.dump(json_data, json_file)
+
+def save_text(text, filename, path=None):
+    if not text.endswith('\n'):
+        text += '\n'
+    if path is None:
+        path = os.getcwd()
+    os.chdir(path)
+    with open(filename, 'a') as text_file:
+        text_file.write(text)
+

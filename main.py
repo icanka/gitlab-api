@@ -1,13 +1,14 @@
 import os
 import time
 
+import parseJson
 import requests
 from pypi_helper import (
     extract_dependency,
     extract_package_info_dictionary,
     download_file,
 )
-#from pypi_helper_mock import download_file
+from pypi_helper_mock import download_file
 
 # GET /pypi/<project_name>/json
 # TODO: check if the file is already downloaded with the same digest.
@@ -16,7 +17,7 @@ from pypi_helper import (
 # TODO: Dont create folder if the response is not 200
 if __name__ == "__main__":
     #base_path = os.getcwd()
-    base_path = "/home/izzetcan/LinuxExtra/"
+    base_path = os.getcwd()
     # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
     packages = {"python-gitlab", "python-active-directory"}
 
@@ -31,23 +32,7 @@ if __name__ == "__main__":
     package_type = "bdist_wheel"   # download only bdist_wheel type packages.
 
     cwd = os.getcwd()
-
-    # if r.status_code == 200:
-    #     json_data = r.json()
-    #
-    #     python_version = 'source'
-    #     package_type = 'bdist_wheel'
-    #     for i_json in search_key_recursive_yield(json_data, 'releases'):
-    #         for release_version in iterate_value(i_json):
-    #             for specific_release in iterate_value(release_version):
-    #                 for type in search_key_recursive_yield(specific_release, 'packagetype'):
-    #                     for version in search_key_recursive_yield(specific_release, 'python_version'):
-    #                         if version['python_version'] != 'source' and type['packagetype'] == 'bdist_wheel':
-    #                             #print(version['python_version'] + "  " + type['packagetype'])
-    #                             pass
-    #                     print(release)
-
-    # extract_package_info_dictionary(json_data,python_version,package_type)
+    print(cwd)
 
     copy_packages = packages.copy()
     # print(type(copy_packages))
@@ -56,10 +41,11 @@ if __name__ == "__main__":
         # print(len(copy_packages))
         for package in copy_packages:
             if package not in downloaded_packages:
-                print("Downloading package " + package)
+                #print("Downloading package " + package)
 
                 packages_directory = os.path.join(base_path, "packages", package)
                 if os.path.exists(packages_directory) is False:
+                    #print('creating directories: ' + packages_directory + " does not exists")
                     os.makedirs(packages_directory)
                 os.chdir(packages_directory)
 
@@ -68,8 +54,10 @@ if __name__ == "__main__":
 
                 if r.status_code == 200:
                     json_data = r.json()
+                    parseJson.save_json(json_data, package)
 
                     # Get the dependant packages
+                    #print(json_data)
                     for dependency in extract_dependency(json_data,  extras=True):
                         # dependency_set.add(dependency)
                         # print(package + " dependency:  " + "'" + dependency + "'")

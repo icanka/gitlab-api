@@ -21,21 +21,27 @@ def item_generator2(json_input, lookup_key):
             yield from item_generator(item, lookup_key)
 
 
-def save_json(json_data, filename, mode='w', path=None):
-    if not filename.endswith('.json'):
-        filename += '.json'
+def save_json(json_data, filename, mode="w", path=None):
+    if not filename.endswith(".json"):
+        filename += ".json"
     if path is None:
         path = os.getcwd()
+    old_cwd = os.getcwd()
     os.chdir(path)
     with open(filename, mode) as json_file:
         json.dump(json_data, json_file)
+    os.chdir(old_cwd)
+
 
 def save_text(text, filename, path=None):
-    if not text.endswith('\n'):
-        text += '\n'
+    if not filename.endswith(".json"):
+        filename += ".json"
+    if not text.endswith("\n"):
+        text += "\n"
     if path is None:
         path = os.getcwd()
+    old_cwd = os.getcwd()
     os.chdir(path)
-    with open(filename, 'a') as text_file:
+    with open(filename, "a") as text_file:
         text_file.write(text)
-
+    os.chdir(old_cwd)

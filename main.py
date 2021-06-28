@@ -22,7 +22,7 @@ from progress_bar import printProgressBar
 
 if __name__ == "__main__":
     # print("Please wait while fetching the urls. This may take a while...")
-    packages = {"python-active-directory"}
+    packages = {"requests"}
     total_url_len = extract_urls(packages)
     os.system("cls" if os.name == "nt" else "clear")
     print(len(total_url_len))

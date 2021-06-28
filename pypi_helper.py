@@ -38,7 +38,7 @@ def extract_package_info_dictionary(json_data, python_version, package_type):
                     "sha256_digest": sha256_digest,
                     "url": url,
                 }
-                print(url)
+                #print(url)
                 yield flatten_dict
 
 

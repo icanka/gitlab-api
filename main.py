@@ -11,26 +11,25 @@ from pypi_helper import (
     download_file,
 )
 
-#from pypi_helper_mock import download_file
+# from pypi_helper_mock import download_file
 
 # GET /pypi/<project_name>/json
 # TODO: check if the file is already downloaded with the same digest.
 # TODO: Check if the package names were given correctly.
 # TODO: Feature for not downloading extra package dependencies too.
 # TODO: Dont create folder if the response is not 200
-from test import printProgressBar
+from progress_bar import printProgressBar
 
 if __name__ == "__main__":
-    #print("Please wait while fetching the urls. This may take a while...")
+    # print("Please wait while fetching the urls. This may take a while...")
     packages = {"python-active-directory"}
     total_url_len = extract_urls(packages)
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
     print(len(total_url_len))
     count = 0
     exit(0)
     base_path = "/home/izzetcan/LinuxExtra/python-packages"
     # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
-
 
     package_info_list = []
     dependency_set = set()
@@ -87,12 +86,12 @@ if __name__ == "__main__":
                         json_data, python_version, package_type
                     ):
                         filename = package_dict["url"].rsplit("/", 1)[1]
-                        #print(package_dict['url'])
+                        # print(package_dict['url'])
                         package_info_list.append(package_dict)
                         if package_dict["url"] not in downloaded_urls:
                             # Download the file
                             # print(os.getcwd())
-                            #print(package_dict['url'])
+                            # print(package_dict['url'])
                             is_downloaded = download_file(
                                 package_dict["url"], package_dict["sha256_digest"]
                             )
@@ -101,7 +100,7 @@ if __name__ == "__main__":
                                 # print(filename + " successfully downloaded.")
                                 downloaded_urls.add(package_dict["url"])
                                 count += 1
-                                #printProgressBar(count, total_url_len, prefix='Progress:', suffix='Complete', length=50)
+                                # printProgressBar(count, total_url_len, prefix='Progress:', suffix='Complete', length=50)
                                 # print(len(downloaded_urls))
                                 pypi_helper.log(
                                     "Success: "

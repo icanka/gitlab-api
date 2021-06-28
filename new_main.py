@@ -9,14 +9,14 @@ from pypi_helper import (
 # TODO: Check if the package names were given correctly.
 # TODO: Feature for not downloading extra package dependencies too.
 # TODO: Dont create folder if the response is not 200
-def extract_urls(packages, extra_depen=False):
-    #packages = {"python-active-directory"}
+def extract_urls(
+    packages, extra_depen=True, package_type={"bdist_wheel"}, python_version="source"
+):
+    # packages = {"python-active-directory"}
     url_set = set()
     package_list = set()
 
     base_url = "https://pypi.org/pypi/package_name/json"
-    python_version = "source"  # do NOT download 'source' versions.
-    package_type = "bdist_wheel"  # download only bdist_wheel type packages.
 
     copy_packages = packages.copy()
     while len(copy_packages) > 0:
@@ -29,26 +29,18 @@ def extract_urls(packages, extra_depen=False):
                 if r.status_code == 200:
                     json_data = r.json()
 
-                    for dependency in extract_dependency(
-                            json_data, extras=extra_depen
-                    ):
+                    for dependency in extract_dependency(json_data, extras=extra_depen):
                         if dependency not in package_list:
                             packages.add(dependency)
 
                     # Get the package dictionary
                     for package_dict in extract_package_info_dictionary(
-                            json_data, python_version, package_type
+                        json_data, python_version, package_type
                     ):
                         if package_dict["url"] not in url_set:
                             url_set.add(package_dict["url"])
 
                 else:
-                    # log_message = (
-                    #         "Could not retrieve api response: Url: "
-                    #         + url
-                    #         + " Status code: "
-                    #         + str(r.status_code)
-                    # )
                     return r.raise_for_status()
 
                 package_list.add(package)

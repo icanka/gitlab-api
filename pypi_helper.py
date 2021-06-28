@@ -1,19 +1,18 @@
 import hashlib
 import os
 import re
+import parseJson
 from pprint import pprint
 
 import requests
 from json_helper import *
 
 
-def extract_package_info_dictionary(
-    json_data, python_version="source", package_type="bdist_wheel"
-):
+def extract_package_info_dictionary(json_data, python_version, package_type):
     for i_json in search_key_recursive_yield(json_data, "releases"):
         count = 0
         for release_version in iterate_value(i_json):
-            #pprint(release_version)
+            # pprint(release_version)
             flatten_dict = {}
             version_number = list(release_version)[0]
             # Unpack each releases' value
@@ -22,19 +21,16 @@ def extract_package_info_dictionary(
                 version = search_key_recursive_return(
                     specific_release, "python_version"
                 )
-                #print(version)
-                if version == python_version:
+                if version in python_version:
                     break
 
                 type = search_key_recursive_return(specific_release, "packagetype")
-                if type != package_type:
+                if not type in package_type:
                     break
                 sha256_digest = search_key_recursive_return(specific_release, "sha256")
 
-                # WHAT THE FUCK! spesific_release not release_version
-                #url = search_key_recursive_return(release_version, "url")
                 url = search_key_recursive_return(specific_release, "url")
-                #pprint(release_version)
+                # pprint(release_version)
                 flatten_dict = {
                     "version_number": version_number,
                     "python_version": version,
@@ -43,8 +39,6 @@ def extract_package_info_dictionary(
                     "url": url,
                 }
                 print(url)
-                #pprint(flatten_dict)
-
                 yield flatten_dict
 
 
@@ -53,7 +47,6 @@ def extract_package_info_dictionary(
 #  zipp;python_version<'3.8'
 # coverage[toml]
 # requirementslib;
-import parseJson
 
 
 def extract_dependency(
@@ -66,7 +59,8 @@ def extract_dependency(
 
     if requires_dist is not None:
         for dist in requires_dist:
-            if base_path: parseJson.save_text(dist, "requires_dict", path=base_path)
+            if base_path:
+                parseJson.save_text(dist, "requires_dict", path=base_path)
 
             p = re.compile("[.0-9a-z-]*", re.IGNORECASE)
             m = p.match(dist)
@@ -76,19 +70,8 @@ def extract_dependency(
                 break
             for item in filter(if_empty, splitted_dist.copy()):
                 splitted_dist.remove(item)
-            # print(splitted_dist)
-            # dist_list = [x.strip() for x in dist.split(';')]
-            # if len(dist_list) > 2: print(dist_list)
-            # dist = dist_list[0].split(' ')[0].strip()
-            # if the dependency is given as extra. Ex: 'coverage[toml]'
-            # for char in filter(dist.endswith, suffix_list): dist = dist.split('[')[0]
 
             dist_set.add(m.group())
-            # print('#########################')
-            # print(m.group())
-            # print(splitted_dist[0])
-
-            # dist_set.add(m.group())
     else:
         pass
         # print("dist is NONE")
@@ -99,8 +82,6 @@ def extract_dependency(
 def download_file(url, sha256_digest=None):
     r = requests.get(url)
     filename = url.rsplit("/", 1)[1]
-    # with open(filename, 'wb') as package:
-    #   package.write(r.content)
     if os.path.exists(filename):
         return False
     open(filename, "wb").write(r.content)
@@ -139,14 +120,6 @@ def log(log_text, log_file, log_dir):
         if not log_text.endswith("\n"):
             log_text += "\n"
         file.write(log_text)
-
-    # if not filename.endswith('.json'):
-    #     filename += '.json'
-    # if not text.endswith('\n'):
-    #     text += '\n'
-    # if path is None:
-    #     path = os.getcwd()
-    # os.chdir(path)
 
 
 def save_json_response(json_data):

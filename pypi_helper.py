@@ -22,7 +22,7 @@ def extract_package_info_dictionary(
                 version = search_key_recursive_return(
                     specific_release, "python_version"
                 )
-                print(version)
+                #print(version)
                 if version == python_version:
                     break
 

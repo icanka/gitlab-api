@@ -4,7 +4,7 @@ from datetime import datetime
 import requests
 import parseJson
 import pypi_helper
-from new_main import get_total_url_len
+from new_main import extract_urls
 from pypi_helper import (
     extract_dependency,
     extract_package_info_dictionary,
@@ -22,13 +22,15 @@ from test import printProgressBar
 
 if __name__ == "__main__":
     #print("Please wait while fetching the urls. This may take a while...")
-    #total_url_len = get_total_url_len()
+    packages = {"python-active-directory"}
+    total_url_len = extract_urls(packages)
     os.system('cls' if os.name == 'nt' else 'clear')
+    print(len(total_url_len))
     count = 0
-    #exit(0)
+    exit(0)
     base_path = "/home/izzetcan/LinuxExtra/python-packages"
     # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
-    packages = {"python-active-directory"}
+
 
     package_info_list = []
     dependency_set = set()

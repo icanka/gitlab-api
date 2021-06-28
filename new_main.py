@@ -9,8 +9,8 @@ from pypi_helper import (
 # TODO: Check if the package names were given correctly.
 # TODO: Feature for not downloading extra package dependencies too.
 # TODO: Dont create folder if the response is not 200
-def get_total_url_len():
-    packages = {"python-gitlab", "python-active-directory"}
+def extract_urls(packages, extra_depen=False):
+    #packages = {"python-active-directory"}
     url_set = set()
     package_list = set()
 
@@ -30,7 +30,7 @@ def get_total_url_len():
                     json_data = r.json()
 
                     for dependency in extract_dependency(
-                            json_data, extras=False
+                            json_data, extras=extra_depen
                     ):
                         if dependency not in package_list:
                             packages.add(dependency)
@@ -43,14 +43,15 @@ def get_total_url_len():
                             url_set.add(package_dict["url"])
 
                 else:
-                    log_message = (
-                            "Could not retrieve api response: Url: "
-                            + url
-                            + " Status code: "
-                            + str(r.status_code)
-                    )
+                    # log_message = (
+                    #         "Could not retrieve api response: Url: "
+                    #         + url
+                    #         + " Status code: "
+                    #         + str(r.status_code)
+                    # )
+                    return r.raise_for_status()
 
                 package_list.add(package)
                 packages.remove(package)
                 copy_packages = packages.copy()
-    return len(url_set)
+    return url_set

@@ -11,7 +11,7 @@ from pypi_helper import (
     download_file,
 )
 
-from pypi_helper_mock import download_file
+#from pypi_helper_mock import download_file
 
 # GET /pypi/<project_name>/json
 # TODO: check if the file is already downloaded with the same digest.
@@ -26,8 +26,6 @@ if __name__ == "__main__":
     os.system('cls' if os.name == 'nt' else 'clear')
     count = 0
     #exit(0)
-    # base_path = os.getcwd()
-    # base_path = os.getcwd()
     base_path = "/home/izzetcan/LinuxExtra/python-packages"
     # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
     packages = {"python-active-directory"}

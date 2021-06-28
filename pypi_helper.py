@@ -23,12 +23,12 @@ def extract_package_info_dictionary(
                     specific_release, "python_version"
                 )
                 print(version)
-                #if version == python_version:
-                #    break
+                if version == python_version:
+                    break
 
                 type = search_key_recursive_return(specific_release, "packagetype")
-                #if type != package_type:
-                #    break
+                if type != package_type:
+                    break
                 sha256_digest = search_key_recursive_return(specific_release, "sha256")
 
                 # WHAT THE FUCK! spesific_release not release_version

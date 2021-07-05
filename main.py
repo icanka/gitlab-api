@@ -27,7 +27,7 @@ if __name__ == "__main__":
     #exit(0)
     base_path = "/home/izzetcan/LinuxExtra/python-packages"
     # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
-    packages = {"python-active-directory"}
+    packages = {"requests"}
 
     package_info_list = []
     dependency_set = set()

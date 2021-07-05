@@ -1,6 +1,8 @@
 import os
 import time
 from datetime import datetime
+from pprint import pprint
+
 import requests
 import parseJson
 import pypi_helper
@@ -22,11 +24,9 @@ from progress_bar import printProgressBar
 
 if __name__ == "__main__":
     packages = {"requests"}
-    total_url_len = extract_urls(packages, extra_depen=False)
+    url_set = extract_urls(packages, extra_depen=False)
     os.system("cls" if os.name == "nt" else "clear")
-    print(len(total_url_len))
     count = 0
-    exit(0)
     base_path = "/home/izzetcan/Downloads/linuxPackages/"
     # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
 

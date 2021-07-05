@@ -20,8 +20,6 @@ def extract_package_info_dictionary(json_data, python_version, package_type):
                 version = search_key_recursive_return(
                     specific_release, "python_version"
                 )
-                print("############################################")
-                print(version)
                 if version in python_version:
                     break
 
@@ -38,8 +36,6 @@ def extract_package_info_dictionary(json_data, python_version, package_type):
                     "sha256_digest": sha256_digest,
                     "url": url,
                 }
-                print(url)
-                print("############################################")
 
                 yield flatten_dict
 

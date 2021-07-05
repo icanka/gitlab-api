@@ -23,12 +23,12 @@ from progress_bar import printProgressBar
 if __name__ == "__main__":
     # print("Please wait while fetching the urls. This may take a while...")
     packages = {"requests"}
-    total_url_len = extract_urls(packages)
+    total_url_len = extract_urls(packages, extra_depen=False)
     os.system("cls" if os.name == "nt" else "clear")
     print(len(total_url_len))
     count = 0
     exit(0)
-    base_path = "/home/izzetcan/LinuxExtra/python-packages"
+    base_path = "/home/izzetcan/Downloads/linuxPackages/"
     # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
 
     package_info_list = []

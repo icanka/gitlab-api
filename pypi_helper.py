@@ -13,7 +13,6 @@ def extract_package_info_dictionary(
     for i_json in search_key_recursive_yield(json_data, "releases"):
         count = 0
         for release_version in iterate_value(i_json):
-            #pprint(release_version)
             flatten_dict = {}
             version_number = list(release_version)[0]
             # Unpack each releases' value
@@ -34,7 +33,6 @@ def extract_package_info_dictionary(
                 # WHAT THE FUCK! spesific_release not release_version
                 #url = search_key_recursive_return(release_version, "url")
                 url = search_key_recursive_return(specific_release, "url")
-                #pprint(release_version)
                 flatten_dict = {
                     "version_number": version_number,
                     "python_version": version,
@@ -43,7 +41,6 @@ def extract_package_info_dictionary(
                     "url": url,
                 }
                 print(url)
-                #pprint(flatten_dict)
 
                 yield flatten_dict
 
@@ -76,22 +73,12 @@ def extract_dependency(
                 break
             for item in filter(if_empty, splitted_dist.copy()):
                 splitted_dist.remove(item)
-            # print(splitted_dist)
-            # dist_list = [x.strip() for x in dist.split(';')]
-            # if len(dist_list) > 2: print(dist_list)
-            # dist = dist_list[0].split(' ')[0].strip()
-            # if the dependency is given as extra. Ex: 'coverage[toml]'
-            # for char in filter(dist.endswith, suffix_list): dist = dist.split('[')[0]
 
             dist_set.add(m.group())
-            # print('#########################')
-            # print(m.group())
-            # print(splitted_dist[0])
 
             # dist_set.add(m.group())
     else:
         pass
-        # print("dist is NONE")
 
     return dist_set
 
@@ -134,7 +121,6 @@ def dump_finish_log(iterable, filename, leading_text=None):
 
 def log(log_text, log_file, log_dir):
     log_file = os.path.join(log_dir, log_file)
-    # print("LOGGIN FILE:" + log_file)
     with open(log_file, "a") as file:
         if not log_text.endswith("\n"):
             log_text += "\n"

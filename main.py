@@ -25,7 +25,7 @@ if __name__ == "__main__":
     os.system('cls' if os.name == 'nt' else 'clear')
     count = 0
     #exit(0)
-    base_path = "/home/izzetcan/LinuxExtra/python-packages"
+    base_path = "/home/izzetcan/Downloads/linuxPackages/"
     # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
     packages = {"requests"}
 
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     request_log_file = (
         "requst_log" + "_" + datetime.today().strftime("%M%H%d%m%y") + ".log"
     )
-    log_dir = os.getcwd()
+    log_dir = base_path
 
     cwd = os.getcwd()
 

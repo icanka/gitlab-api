@@ -21,7 +21,6 @@ from pypi_helper import (
 from progress_bar import printProgressBar
 
 if __name__ == "__main__":
-    # print("Please wait while fetching the urls. This may take a while...")
     packages = {"requests"}
     total_url_len = extract_urls(packages, extra_depen=False)
     os.system("cls" if os.name == "nt" else "clear")
@@ -47,20 +46,14 @@ if __name__ == "__main__":
     log_dir = os.getcwd()
 
     cwd = os.getcwd()
-    # print(cwd)
 
     copy_packages = packages.copy()
-    # print(type(copy_packages))
     while len(copy_packages) > 0:
-        # print(copy_packages)
-        # print(len(copy_packages))
         for package in copy_packages:
             if package not in downloaded_packages:
-                # print("Downloading package " + package)
 
                 packages_directory = os.path.join(base_path, "packages", package)
                 if os.path.exists(packages_directory) is False:
-                    # print('creating directories: ' + packages_directory + " does not exists")
                     os.makedirs(packages_directory)
                 os.chdir(packages_directory)
 
@@ -71,12 +64,10 @@ if __name__ == "__main__":
                     json_data = r.json()
                     parseJson.save_json(json_data, package)
                     # Get the dependant packages
-                    # print(json_data)
                     for dependency in extract_dependency(
                         json_data, base_path, extras=False
                     ):
                         # dependency_set.add(dependency)
-                        # print(package + " dependency:  " + "'" + dependency + "'")
                         if dependency not in downloaded_packages:
                             packages.add(dependency)
 
@@ -86,22 +77,16 @@ if __name__ == "__main__":
                         json_data, python_version, package_type
                     ):
                         filename = package_dict["url"].rsplit("/", 1)[1]
-                        # print(package_dict['url'])
                         package_info_list.append(package_dict)
                         if package_dict["url"] not in downloaded_urls:
                             # Download the file
-                            # print(os.getcwd())
-                            # print(package_dict['url'])
                             is_downloaded = download_file(
                                 package_dict["url"], package_dict["sha256_digest"]
                             )
                             # Check if it was successfully downloaded
                             if is_downloaded is True:
-                                # print(filename + " successfully downloaded.")
                                 downloaded_urls.add(package_dict["url"])
                                 count += 1
-                                # printProgressBar(count, total_url_len, prefix='Progress:', suffix='Complete', length=50)
-                                # print(len(downloaded_urls))
                                 pypi_helper.log(
                                     "Success: "
                                     + " : "
@@ -113,7 +98,6 @@ if __name__ == "__main__":
                                 )
                             else:
                                 # TODO: Find a better solution to this very quick workaround.
-                                # print(filename + " could not be downloaded. Trying again")
                                 is_downloaded = download_file(
                                     package_dict["url"], package_dict["sha256_digest"]
                                 )

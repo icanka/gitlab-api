@@ -12,7 +12,6 @@ def extract_package_info_dictionary(json_data, python_version, package_type):
     for i_json in search_key_recursive_yield(json_data, "releases"):
         count = 0
         for release_version in iterate_value(i_json):
-            # pprint(release_version)
             flatten_dict = {}
             version_number = list(release_version)[0]
             # Unpack each releases' value
@@ -21,6 +20,8 @@ def extract_package_info_dictionary(json_data, python_version, package_type):
                 version = search_key_recursive_return(
                     specific_release, "python_version"
                 )
+                print("############################################")
+                print(version)
                 if version in python_version:
                     break
 
@@ -30,7 +31,6 @@ def extract_package_info_dictionary(json_data, python_version, package_type):
                 sha256_digest = search_key_recursive_return(specific_release, "sha256")
 
                 url = search_key_recursive_return(specific_release, "url")
-                # pprint(release_version)
                 flatten_dict = {
                     "version_number": version_number,
                     "python_version": version,
@@ -38,7 +38,9 @@ def extract_package_info_dictionary(json_data, python_version, package_type):
                     "sha256_digest": sha256_digest,
                     "url": url,
                 }
-                #print(url)
+                print(url)
+                print("############################################")
+
                 yield flatten_dict
 
 
@@ -74,7 +76,6 @@ def extract_dependency(
             dist_set.add(m.group())
     else:
         pass
-        # print("dist is NONE")
 
     return dist_set
 
@@ -115,7 +116,6 @@ def dump_finish_log(iterable, filename, leading_text=None):
 
 def log(log_text, log_file, log_dir):
     log_file = os.path.join(log_dir, log_file)
-    # print("LOGGIN FILE:" + log_file)
     with open(log_file, "a") as file:
         if not log_text.endswith("\n"):
             log_text += "\n"

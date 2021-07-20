@@ -2,8 +2,6 @@ import hashlib
 import os
 import re
 import parseJson
-from pprint import pprint
-
 import requests
 from json_helper import *
 

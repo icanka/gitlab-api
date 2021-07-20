@@ -46,4 +46,4 @@ def extract_urls(
                 package_list.add(package)
                 packages.remove(package)
                 copy_packages = packages.copy()
-    return {'url_set': url_set, 'package_list': package_list}
+    return {"url_set": url_set, "package_list": package_list}

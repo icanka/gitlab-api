@@ -1,8 +1,5 @@
 import os
-import time
 from datetime import datetime
-from pprint import pprint
-
 import requests
 import parseJson
 import pypi_helper
@@ -23,11 +20,12 @@ from pypi_helper import (
 from progress_bar import printProgressBar
 
 if __name__ == "__main__":
-    packages = {"requests"}
-    url_set = extract_urls(packages, extra_depen=False)
+    packages = {"lxml", "python-active-directory", "python-gitlab", "requests"}
+    url_set = extract_urls(packages.copy(), extra_depen=False)
+    # pprint(url_set)
     os.system("cls" if os.name == "nt" else "clear")
     count = 0
-    base_path = "/home/izzetcan/Downloads/linuxPackages/"
+    base_path = "/run/media/izzetcan/719CA8E52715D311/"
     # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
 
     package_info_list = []
@@ -43,8 +41,8 @@ if __name__ == "__main__":
     request_log_file = (
         "requst_log" + "_" + datetime.today().strftime("%M%H%d%m%y") + ".log"
     )
-    log_dir = os.getcwd()
 
+    log_dir = base_path
     cwd = os.getcwd()
 
     copy_packages = packages.copy()
@@ -59,7 +57,6 @@ if __name__ == "__main__":
 
                 url = base_url.replace("package_name", package)
                 r = requests.get(url)
-
                 if r.status_code == 200:
                     json_data = r.json()
                     parseJson.save_json(json_data, package)
@@ -83,10 +80,17 @@ if __name__ == "__main__":
                             is_downloaded = download_file(
                                 package_dict["url"], package_dict["sha256_digest"]
                             )
+                            count += 1
+                            printProgressBar(
+                                count,
+                                len(url_set["url_set"]),
+                                prefix="Progress:",
+                                suffix="Complete",
+                                length=50,
+                            )
                             # Check if it was successfully downloaded
                             if is_downloaded is True:
                                 downloaded_urls.add(package_dict["url"])
-                                count += 1
                                 pypi_helper.log(
                                     "Success: "
                                     + " : "
@@ -97,6 +101,7 @@ if __name__ == "__main__":
                                     log_dir,
                                 )
                             else:
+
                                 # TODO: Find a better solution to this very quick workaround.
                                 is_downloaded = download_file(
                                     package_dict["url"], package_dict["sha256_digest"]

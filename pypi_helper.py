@@ -18,8 +18,10 @@ def extract_package_info_dictionary(json_data, python_version, package_type):
                 version = search_key_recursive_return(
                     specific_release, "python_version"
                 )
-                if version in python_version:
-                    break
+
+                # Commented out; only check package type dont check python_version.
+                # if version in python_version:
+                #     break
 
                 type = search_key_recursive_return(specific_release, "packagetype")
                 if not type in package_type:
@@ -57,11 +59,12 @@ def extract_dependency(
         for dist in requires_dist:
             if base_path:
                 parseJson.save_text(dist, "requires_dict", path=base_path)
-
+        for dist in requires_dist:
             p = re.compile("[.0-9a-z-]*", re.IGNORECASE)
             m = p.match(dist)
 
             splitted_dist = re.split("[\][/!<>=(); ']+", dist)
+            #print(splitted_dist)
             if extras is False and "extra" in splitted_dist:
                 break
             for item in filter(if_empty, splitted_dist.copy()):
@@ -75,10 +78,15 @@ def extract_dependency(
 
 
 def download_file(url, sha256_digest=None):
-    r = requests.get(url)
     filename = url.rsplit("/", 1)[1]
     if os.path.exists(filename):
-        return False
+        #print("File exists.")
+        if sha256_digest is not None:
+            #print("Calculating digest for file for comparision.")
+            calculated_digest = calculate_sha256_digest(filename)
+            return None if calculated_digest == sha256_digest else False
+        return None
+    r = requests.get(url)
     open(filename, "wb").write(r.content)
     if sha256_digest is not None:
         calculated_digest = calculate_sha256_digest(filename)

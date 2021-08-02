@@ -9,23 +9,26 @@ from pypi_helper import (
     extract_package_info_dictionary,
     download_file,
 )
-
-# from pypi_helper_mock import download_file
+from progress_bar import printProgressBar
+#from pypi_helper_mock import download_file
 
 # GET /pypi/<project_name>/json
-# TODO: check if the file is already downloaded with the same digest.
 # TODO: Check if the package names were given correctly.
-# TODO: Feature for not downloading extra package dependencies too.
 # TODO: Dont create folder if the response is not 200
-from progress_bar import printProgressBar
+
 
 if __name__ == "__main__":
-    packages = {"lxml", "python-active-directory", "python-gitlab", "requests"}
-    url_set = extract_urls(packages.copy(), extra_depen=False)
+    packages = {"wheel", "pip", "setuptools"}
+    #packages = {"flake8", "pre-commit", "yamllint", "molecule-docker"}
+    #packages = {"yamllint", "molecule-docker", "twine"}
+    print("Extracting urls, please wait..")
+    python_version = "source"  # do NOT download 'source' versions.
+    package_type = ["bdist_wheel"]  # download only bdist_wheel type packages.
+    url_set = extract_urls(packages.copy(), extra_depen=False, package_type=package_type, python_version=python_version)
     # pprint(url_set)
     os.system("cls" if os.name == "nt" else "clear")
     count = 0
-    base_path = "/run/media/izzetcan/719CA8E52715D311/"
+    base_path = "/home/izzetcan/PycharmProjects/gitlab-api"
     # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
 
     package_info_list = []
@@ -35,8 +38,7 @@ if __name__ == "__main__":
     downloaded_packages = set()
 
     base_url = "https://pypi.org/pypi/package_name/json"
-    python_version = "source"  # do NOT download 'source' versions.
-    package_type = "bdist_wheel"  # download only bdist_wheel type packages.
+
     url_log_file = "url_log" + "_" + datetime.today().strftime("%M%H%d%m%y") + ".log"
     request_log_file = (
         "requst_log" + "_" + datetime.today().strftime("%M%H%d%m%y") + ".log"
@@ -60,6 +62,7 @@ if __name__ == "__main__":
                 if r.status_code == 200:
                     json_data = r.json()
                     parseJson.save_json(json_data, package)
+
                     # Get the dependant packages
                     for dependency in extract_dependency(
                         json_data, base_path, extras=False
@@ -69,13 +72,13 @@ if __name__ == "__main__":
                             packages.add(dependency)
 
                     # Get the package dictionary
-
                     for package_dict in extract_package_info_dictionary(
                         json_data, python_version, package_type
                     ):
                         filename = package_dict["url"].rsplit("/", 1)[1]
                         package_info_list.append(package_dict)
                         if package_dict["url"] not in downloaded_urls:
+
                             # Download the file
                             is_downloaded = download_file(
                                 package_dict["url"], package_dict["sha256_digest"]
@@ -85,7 +88,7 @@ if __name__ == "__main__":
                                 count,
                                 len(url_set["url_set"]),
                                 prefix="Progress:",
-                                suffix="Complete",
+                                suffix= "| " + str(count) + " of " + str(len(url_set["url_set"])) + " |",
                                 length=50,
                             )
                             # Check if it was successfully downloaded
@@ -100,7 +103,8 @@ if __name__ == "__main__":
                                     url_log_file,
                                     log_dir,
                                 )
-                            else:
+                            # Download failed for some reason.
+                            elif is_downloaded is False:
 
                                 # TODO: Find a better solution to this very quick workaround.
                                 is_downloaded = download_file(
@@ -116,6 +120,19 @@ if __name__ == "__main__":
                                         url_log_file,
                                         log_dir,
                                     )
+                                else:
+                                    downloaded_urls.add(package_dict["url"])
+                            # File already downloaded.
+                            elif is_downloaded is None:
+                                pypi_helper.log(
+                                    "File already exists: "
+                                    + package_dict["url"]
+                                    + " "
+                                    + package_dict["sha256_digest"],
+                                    url_log_file,
+                                    log_dir,
+                                )
+
 
                 else:
                     log_message = (

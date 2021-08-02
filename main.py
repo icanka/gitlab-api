@@ -18,18 +18,22 @@ from progress_bar import printProgressBar
 
 
 if __name__ == "__main__":
-    packages = {"wheel", "pip", "setuptools"}
+    #packages = {"wheel", "pip", "setuptools"}
     #packages = {"flake8", "pre-commit", "yamllint", "molecule-docker"}
     #packages = {"yamllint", "molecule-docker", "twine"}
+    #packages = {"webencodings", "cffi", "pycparser", "arrow", "bracex", "Cerberus", "pathspec", "PyNaCl", "python_dateutil", "resolvelib", "ruamel.yaml.clib"}
+    #packages = {"dnspython", "pyasn1","pyasn1-modules", "python-ldap", "requests-toolbelt", "requests", "python-active-directory", "ply", "idna", "certifi", "charset-normalizer", "lxml", "python-gitlab", "six", "urllib3"}
+    #packages = {"pyasn1_modules"}
+    #packages = {'lxml', 'python-active-directory', 'python-gitlab'}
+    packages = {"molecule","twine", "yamllint", "molecule-docker"}
     print("Extracting urls, please wait..")
-    python_version = "source"  # do NOT download 'source' versions.
-    package_type = ["bdist_wheel"]  # download only bdist_wheel type packages.
+    python_version = "source"  # do NOT download 'source' versions. This option is commented out for now.
+    package_type = ["bdist_wheel", "sdist"]  # download only bdist_wheel type packages.
     url_set = extract_urls(packages.copy(), extra_depen=False, package_type=package_type, python_version=python_version)
     # pprint(url_set)
     os.system("cls" if os.name == "nt" else "clear")
     count = 0
-    base_path = "/home/izzetcan/PycharmProjects/gitlab-api"
-    # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
+    base_path = "/home/izzetcan/Downloads/python_packages"
 
     package_info_list = []
     dependency_set = set()
@@ -75,6 +79,7 @@ if __name__ == "__main__":
                     for package_dict in extract_package_info_dictionary(
                         json_data, python_version, package_type
                     ):
+
                         filename = package_dict["url"].rsplit("/", 1)[1]
                         package_info_list.append(package_dict)
                         if package_dict["url"] not in downloaded_urls:
@@ -124,6 +129,7 @@ if __name__ == "__main__":
                                     downloaded_urls.add(package_dict["url"])
                             # File already downloaded.
                             elif is_downloaded is None:
+                                downloaded_urls.add(package_dict["url"])
                                 pypi_helper.log(
                                     "File already exists: "
                                     + package_dict["url"]

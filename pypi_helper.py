@@ -24,20 +24,21 @@ def extract_package_info_dictionary(json_data, python_version, package_type):
                 #     break
 
                 type = search_key_recursive_return(specific_release, "packagetype")
-                if not type in package_type:
-                    break
-                sha256_digest = search_key_recursive_return(specific_release, "sha256")
 
-                url = search_key_recursive_return(specific_release, "url")
-                flatten_dict = {
-                    "version_number": version_number,
-                    "python_version": version,
-                    "package_type": type,
-                    "sha256_digest": sha256_digest,
-                    "url": url,
-                }
+                if type in package_type:
 
-                yield flatten_dict
+                    sha256_digest = search_key_recursive_return(specific_release, "sha256")
+
+                    url = search_key_recursive_return(specific_release, "url")
+                    flatten_dict = {
+                        "version_number": version_number,
+                        "python_version": version,
+                        "package_type": type,
+                        "sha256_digest": sha256_digest,
+                        "url": url,
+                    }
+
+                    yield flatten_dict
 
 
 # TODO: Do not split required dists with space as sometime the string is like

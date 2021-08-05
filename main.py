@@ -1,16 +1,19 @@
 import os
 from datetime import datetime
+
 import requests
+
 import parseJson
 import pypi_helper
 from new_main import extract_urls
+from progress_bar import printProgressBar
 from pypi_helper import (
     extract_dependency,
     extract_package_info_dictionary,
     download_file,
 )
-from progress_bar import printProgressBar
-#from pypi_helper_mock import download_file
+
+# from pypi_helper_mock import download_file
 
 # GET /pypi/<project_name>/json
 # TODO: Check if the package names were given correctly.
@@ -18,14 +21,16 @@ from progress_bar import printProgressBar
 
 
 if __name__ == "__main__":
-    #packages = {"wheel", "pip", "setuptools"}
-    #packages = {"flake8", "pre-commit", "yamllint", "molecule-docker"}
-    #packages = {"yamllint", "molecule-docker", "twine"}
-    #packages = {"webencodings", "cffi", "pycparser", "arrow", "bracex", "Cerberus", "pathspec", "PyNaCl", "python_dateutil", "resolvelib", "ruamel.yaml.clib"}
-    #packages = {"dnspython", "pyasn1","pyasn1-modules", "python-ldap", "requests-toolbelt", "requests", "python-active-directory", "ply", "idna", "certifi", "charset-normalizer", "lxml", "python-gitlab", "six", "urllib3"}
-    #packages = {"pyasn1_modules"}
-    #packages = {'lxml', 'python-active-directory', 'python-gitlab'}
-    packages = {"molecule","twine", "yamllint", "molecule-docker"}
+    # packages = {"wheel", "pip", "setuptools"}
+    # packages = {"flake8", "pre-commit", "yamllint", "molecule-docker"}
+    # packages = {"yamllint", "molecule-docker", "twine"}
+    # packages = {"webencodings", "cffi", "pycparser", "arrow", "bracex", "Cerberus", "pathspec", "PyNaCl", "python_dateutil", "resolvelib", "ruamel.yaml.clib"}
+    # packages = {"dnspython", "pyasn1","pyasn1-modules", "python-ldap", "requests-toolbelt", "requests", "python-active-directory", "ply", "idna", "certifi", "charset-normalizer", "lxml", "python-gitlab", "six", "urllib3"}
+    # packages = {"pyasn1_modules"}
+    # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
+    #packages = {"molecule", "twine", "yamllint", "molecule-docker"}
+    packages = {"numpy", "pendulum", "pillow", "pandas", "pytest", "opencv-python", "nltk", "fire"}
+
     print("Extracting urls, please wait..")
     python_version = "source"  # do NOT download 'source' versions. This option is commented out for now.
     package_type = ["bdist_wheel", "sdist"]  # download only bdist_wheel type packages.
@@ -33,7 +38,7 @@ if __name__ == "__main__":
     # pprint(url_set)
     os.system("cls" if os.name == "nt" else "clear")
     count = 0
-    base_path = "/home/izzetcan/Downloads/python_packages"
+    base_path = "/home/izzetcan/Downloads/python_packages2"
 
     package_info_list = []
     dependency_set = set()
@@ -45,7 +50,7 @@ if __name__ == "__main__":
 
     url_log_file = "url_log" + "_" + datetime.today().strftime("%M%H%d%m%y") + ".log"
     request_log_file = (
-        "requst_log" + "_" + datetime.today().strftime("%M%H%d%m%y") + ".log"
+            "requst_log" + "_" + datetime.today().strftime("%M%H%d%m%y") + ".log"
     )
 
     log_dir = base_path
@@ -69,7 +74,7 @@ if __name__ == "__main__":
 
                     # Get the dependant packages
                     for dependency in extract_dependency(
-                        json_data, base_path, extras=False
+                            json_data, base_path, extras=False
                     ):
                         # dependency_set.add(dependency)
                         if dependency not in downloaded_packages:
@@ -77,7 +82,7 @@ if __name__ == "__main__":
 
                     # Get the package dictionary
                     for package_dict in extract_package_info_dictionary(
-                        json_data, python_version, package_type
+                            json_data, python_version, package_type
                     ):
 
                         filename = package_dict["url"].rsplit("/", 1)[1]
@@ -93,7 +98,7 @@ if __name__ == "__main__":
                                 count,
                                 len(url_set["url_set"]),
                                 prefix="Progress:",
-                                suffix= "| " + str(count) + " of " + str(len(url_set["url_set"])) + " |",
+                                suffix="| " + str(count) + " of " + str(len(url_set["url_set"])) + " |",
                                 length=50,
                             )
                             # Check if it was successfully downloaded
@@ -142,10 +147,10 @@ if __name__ == "__main__":
 
                 else:
                     log_message = (
-                        "Could not retrieve api response: Url: "
-                        + url
-                        + " Status code: "
-                        + str(r.status_code)
+                            "Could not retrieve api response: Url: "
+                            + url
+                            + " Status code: "
+                            + str(r.status_code)
                     )
                     print(package)
                     print(log_message)

@@ -1,4 +1,5 @@
 import os
+import re
 from datetime import datetime
 
 import requests
@@ -13,7 +14,7 @@ from pypi_helper import (
     download_file,
 )
 
-# from pypi_helper_mock import download_file
+from pypi_helper_mock import download_file
 
 # GET /pypi/<project_name>/json
 # TODO: Check if the package names were given correctly.
@@ -25,13 +26,27 @@ if __name__ == "__main__":
     # packages = {"flake8", "pre-commit", "yamllint", "molecule-docker"}
     # packages = {"yamllint", "molecule-docker", "twine"}
     # packages = {"webencodings", "cffi", "pycparser", "arrow", "bracex", "Cerberus", "pathspec", "PyNaCl", "python_dateutil", "resolvelib", "ruamel.yaml.clib"}
-    # packages = {"dnspython", "pyasn1","pyasn1-modules", "python-ldap", "requests-toolbelt", "requests", "python-active-directory", "ply", "idna", "certifi", "charset-normalizer", "lxml", "python-gitlab", "six", "urllib3"}
+    #packages = {"dnspython", "pyasn1","pyasn1-modules", "python-ldap", "requests-toolbelt", "requests", "python-active-directory", "ply", "idna", "certifi", "charset-normalizer", "lxml", "python-gitlab", "six", "urllib3"}
     # packages = {"pyasn1_modules"}
-    # packages = {'lxml', 'python-active-directory', 'python-gitlab'}
+    #packages = {'molecule[lint, docker, ansible]', 'twine'}
     #packages = {"molecule", "twine", "yamllint", "molecule-docker"}
-    packages = {"numpy", "pendulum", "pillow", "pandas", "pytest", "opencv-python", "nltk", "fire"}
+    packages={"crptography==3.4"}
+    dependency_set = set()
 
     print("Extracting urls, please wait..")
+    for dependency in pypi_helper.extract_dependency_pip(packages):
+        dependency_set.add(dependency)
+
+    packages = dependency_set.union(packages)
+
+    copy_packages = packages.copy()
+    for item in copy_packages:
+        p = re.compile(".*\[[a-zA-Z0-9\-\_\, ]*\]*", re.IGNORECASE)
+        m = p.match(item)
+        if m is not None:
+            packages.remove(item)
+
+
     python_version = "source"  # do NOT download 'source' versions. This option is commented out for now.
     package_type = ["bdist_wheel", "sdist"]  # download only bdist_wheel type packages.
     url_set = extract_urls(packages.copy(), extra_depen=False, package_type=package_type, python_version=python_version)
@@ -41,7 +56,6 @@ if __name__ == "__main__":
     base_path = "/home/izzetcan/Downloads/python_packages2"
 
     package_info_list = []
-    dependency_set = set()
     downloaded_urls = set()
     failed_urls = set()
     downloaded_packages = set()

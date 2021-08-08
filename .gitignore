@@ -6,6 +6,7 @@ __pycache__/
 packages
 # C extensions
 *.so
+pip-package
 
 # Distribution / packaging
 .Python

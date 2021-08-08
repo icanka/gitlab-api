@@ -1,6 +1,8 @@
 import hashlib
 import os
 import re
+import subprocess
+
 import parseJson
 import requests
 from json_helper import *
@@ -76,6 +78,24 @@ def extract_dependency(
         pass
 
     return dist_set
+
+def extract_dependency_pip(package):
+    package_set = set()
+
+    for item in package:
+        old_cwd = os.getcwd()
+        os.chdir('./pip-package')
+        packages = subprocess.run(["./pip.sh", item], capture_output=True)
+        packages = packages.stdout
+        packages = packages.decode("utf-8")
+        os.chdir(old_cwd)
+
+        for package in packages.split():
+            package_set.add(package)
+
+
+    return package_set
+
 
 
 def download_file(url, sha256_digest=None):

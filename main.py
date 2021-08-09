@@ -11,9 +11,7 @@ from progress_bar import printProgressBar
 from pypi_helper import (
     extract_dependency,
     extract_package_info_dictionary,
-    download_file,
 )
-
 from pypi_helper_mock import download_file
 
 # GET /pypi/<project_name>/json
@@ -26,11 +24,11 @@ if __name__ == "__main__":
     # packages = {"flake8", "pre-commit", "yamllint", "molecule-docker"}
     # packages = {"yamllint", "molecule-docker", "twine"}
     # packages = {"webencodings", "cffi", "pycparser", "arrow", "bracex", "Cerberus", "pathspec", "PyNaCl", "python_dateutil", "resolvelib", "ruamel.yaml.clib"}
-    #packages = {"dnspython", "pyasn1","pyasn1-modules", "python-ldap", "requests-toolbelt", "requests", "python-active-directory", "ply", "idna", "certifi", "charset-normalizer", "lxml", "python-gitlab", "six", "urllib3"}
+    # packages = {"dnspython", "pyasn1","pyasn1-modules", "python-ldap", "requests-toolbelt", "requests", "python-active-directory", "ply", "idna", "certifi", "charset-normalizer", "lxml", "python-gitlab", "six", "urllib3"}
     # packages = {"pyasn1_modules"}
-    #packages = {'molecule[lint, docker, ansible]', 'twine'}
-    #packages = {"molecule", "twine", "yamllint", "molecule-docker"}
-    packages={"crptography==3.4"}
+    # packages = {'molecule[lint, docker, ansible]', 'twine'}
+    # packages = {"molecule", "twine", "yamllint", "molecule-docker"}
+    packages = {"requests"}
     dependency_set = set()
 
     print("Extracting urls, please wait..")
@@ -38,8 +36,10 @@ if __name__ == "__main__":
         dependency_set.add(dependency)
 
     packages = dependency_set.union(packages)
+    print(packages)
 
     copy_packages = packages.copy()
+
     for item in copy_packages:
         p = re.compile(".*\[[a-zA-Z0-9\-\_\, ]*\]*", re.IGNORECASE)
         m = p.match(item)

@@ -3,20 +3,22 @@ import os
 import re
 import subprocess
 
-import parseJson
 import requests
+
+import parseJson
 from json_helper import *
 
 
-def extract_package_info_dictionary(json_data, python_version, package_type):
+def extract_package_info_dictionary(json_data, pkg_version, python_version, package_type, package_name):
     for i_json in search_key_recursive_yield(json_data, "releases"):
         count = 0
+
+
         for release_version in iterate_value(i_json):
             flatten_dict = {}
             version_number = list(release_version)[0]
             # Unpack each releases' value
             for specific_release in iterate_value(release_version):
-
                 version = search_key_recursive_return(
                     specific_release, "python_version"
                 )
@@ -27,20 +29,20 @@ def extract_package_info_dictionary(json_data, python_version, package_type):
 
                 type = search_key_recursive_return(specific_release, "packagetype")
 
-                if type in package_type:
+                # if type in package_type:
 
-                    sha256_digest = search_key_recursive_return(specific_release, "sha256")
+                sha256_digest = search_key_recursive_return(specific_release, "sha256")
 
-                    url = search_key_recursive_return(specific_release, "url")
-                    flatten_dict = {
-                        "version_number": version_number,
-                        "python_version": version,
-                        "package_type": type,
-                        "sha256_digest": sha256_digest,
-                        "url": url,
-                    }
+                url = search_key_recursive_return(specific_release, "url")
+                flatten_dict = {
+                    "version_number": version_number,
+                    "python_version": version,
+                    "package_type": type,
+                    "sha256_digest": sha256_digest,
+                    "url": url,
+                }
 
-                    yield flatten_dict
+                yield flatten_dict
 
 
 # TODO: Do not split required dists with space as sometime the string is like
@@ -51,11 +53,24 @@ def extract_package_info_dictionary(json_data, python_version, package_type):
 
 
 def extract_dependency(
-    json_data,
-    base_path=None,
-    extras=True,
+        json_data,
+        package_name=None,
+        base_path=None,
+        extras=True,
+
 ):
     dist_set = set()
+    # for i_json in search_key_recursive_yield(json_data, "releases"):
+    #     for release_version in iterate_value(i_json):
+    #         for k in release_version.keys():
+    #             print(package_name)
+    #             package = package_name + "==" + k
+    #             package = {package}
+    #             print(package)
+    #             for dependency in extract_dependency_pip(package):
+    #                 dist_set.add(dependency)
+    # print(dist_set)
+
     requires_dist = search_key_recursive_return(json_data, "requires_dist")
 
     if requires_dist is not None:
@@ -67,7 +82,7 @@ def extract_dependency(
             m = p.match(dist)
 
             splitted_dist = re.split("[\][/!<>=(); ']+", dist)
-            #print(splitted_dist)
+            # print(splitted_dist)
             if extras is False and "extra" in splitted_dist:
                 break
             for item in filter(if_empty, splitted_dist.copy()):
@@ -78,6 +93,7 @@ def extract_dependency(
         pass
 
     return dist_set
+
 
 def extract_dependency_pip(package):
     package_set = set()
@@ -93,17 +109,15 @@ def extract_dependency_pip(package):
         for package in packages.split():
             package_set.add(package)
 
-
     return package_set
-
 
 
 def download_file(url, sha256_digest=None):
     filename = url.rsplit("/", 1)[1]
     if os.path.exists(filename):
-        #print("File exists.")
+        # print("File exists.")
         if sha256_digest is not None:
-            #print("Calculating digest for file for comparision.")
+            # print("Calculating digest for file for comparision.")
             calculated_digest = calculate_sha256_digest(filename)
             return None if calculated_digest == sha256_digest else False
         return None

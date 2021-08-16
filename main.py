@@ -1,6 +1,10 @@
 import os
 import re
 from datetime import datetime
+import subprocess
+from pathlib import Path
+from pprint import pprint
+from pypi_helper import pip_download_and_return
 
 import requests
 
@@ -28,7 +32,18 @@ if __name__ == "__main__":
     # packages = {"pyasn1_modules"}
     # packages = {'molecule[lint, docker, ansible]', 'twine'}
     # packages = {"molecule", "twine", "yamllint", "molecule-docker"}
+
     packages = {"requests"}
+    for package in packages:
+        package_info = pip_download_and_return(package)
+        pprint(package_info)
+    exit(0)
+
+
+
+
+
+
     dependency_set = set()
 
     print("Extracting urls, please wait..")

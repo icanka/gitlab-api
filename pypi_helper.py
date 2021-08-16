@@ -2,6 +2,7 @@ import hashlib
 import os
 import re
 import subprocess
+from pathlib import Path
 
 import requests
 
@@ -169,3 +170,19 @@ def if_empty(item):
 
 def if_extra(item):
     return True if item == "extra" else False
+
+
+
+def pip_download_and_return(package_name):
+    package_list = []
+    data_folder = Path("requests")
+    file_to_open = data_folder / "requirements.txt"
+    packages_sh = subprocess.run(["./package.sh", "requests"])
+    file = open(file_to_open, "r")
+    lines = file.readlines()
+    for line in lines:
+        package_and_version = line.split('==')
+        # strip newline from version string
+        package_and_version[1] = package_and_version[1].strip('\n')
+        package_list.append(package_and_version)
+    return package_list

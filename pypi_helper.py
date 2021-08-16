@@ -3,6 +3,7 @@ import os
 import re
 import subprocess
 from pathlib import Path
+from pprint import pprint
 
 import requests
 
@@ -173,11 +174,17 @@ def if_extra(item):
 
 
 
+
+
+
+
+
+
 def pip_download_and_return(package_name):
     package_list = []
-    data_folder = Path("requests")
+    data_folder = Path(package_name)
     file_to_open = data_folder / "requirements.txt"
-    packages_sh = subprocess.run(["./package.sh", "requests"])
+    packages_sh = subprocess.run(["./package.sh", package_name])
     file = open(file_to_open, "r")
     lines = file.readlines()
     for line in lines:
@@ -186,3 +193,31 @@ def pip_download_and_return(package_name):
         package_and_version[1] = package_and_version[1].strip('\n')
         package_list.append(package_and_version)
     return package_list
+
+
+
+
+
+
+# Iterate through versions on the returned JSON response. Return the matching ones.
+def extract_package_info_dictionary_v2(json_data, package_version):
+    for i_json in search_key_recursive_yield(json_data, "releases"):
+         for release_version in iterate_value(i_json):
+            flatten_dict = {}
+            version_number = list(release_version)[0]
+            # We found our desired version
+            if version_number == package_version:
+                for specific_release in iterate_value(release_version):
+
+                    version = search_key_recursive_return(specific_release, "python_version")
+                    type = search_key_recursive_return(specific_release, "packagetype")
+                    sha256_digest = search_key_recursive_return(specific_release, "sha256")
+                    url = search_key_recursive_return(specific_release, "url")
+                    flatten_dict = {
+                        "version_number": version_number,
+                        "python_version": version,
+                        "package_type": type,
+                        "sha256_digest": sha256_digest,
+                        "url": url,
+                    }
+                    yield flatten_dict

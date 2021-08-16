@@ -1,7 +1,9 @@
+from pprint import pprint
+
 import requests
 from pypi_helper import (
     extract_dependency,
-    extract_package_info_dictionary,
+    extract_package_info_dictionary, extract_package_info_dictionary_v2,
 )
 
 # GET /pypi/<project_name>/json
@@ -47,3 +49,23 @@ def extract_urls(
                 packages.remove(package)
                 copy_packages = packages.copy()
     return {"url_set": url_set, "package_list": package_list}
+
+def extract_urls_v2(
+    package_list
+):
+    url_set = set()
+    base_url = "https://pypi.org/pypi/package_name/json"
+
+    for package in package_list:
+        # package[0] is the package name: ['urllib3', '1.26.6']
+        url = base_url.replace("package_name", package[0])
+        # Get the JSON response from API for the given package
+        r = requests.get(url)
+        pprint(url)
+        if r.status_code == 200:
+            json_data = r.json()
+            # Pass the returned JSON and the desired package version
+            pprint(package[0])
+            for package_dict in extract_package_info_dictionary_v2(json_data, package[1]):
+                print(package_dict)
+

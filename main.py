@@ -11,6 +11,7 @@ import requests
 import parseJson
 import pypi_helper
 from new_main import extract_urls
+from new_main import extract_urls_v2
 from progress_bar import printProgressBar
 from pypi_helper import (
     extract_dependency,
@@ -27,16 +28,18 @@ if __name__ == "__main__":
     # packages = {"wheel", "pip", "setuptools"}
     # packages = {"flake8", "pre-commit", "yamllint", "molecule-docker"}
     # packages = {"yamllint", "molecule-docker", "twine"}
-    # packages = {"webencodings", "cffi", "pycparser", "arrow", "bracex", "Cerberus", "pathspec", "PyNaCl", "python_dateutil", "resolvelib", "ruamel.yaml.clib"}
+    #packages = {"webencodings", "cffi", "pycparser", "arrow", "bracex", "Cerberus", "pathspec", "PyNaCl", "python_dateutil", "resolvelib", "ruamel.yaml.clib"}
     # packages = {"dnspython", "pyasn1","pyasn1-modules", "python-ldap", "requests-toolbelt", "requests", "python-active-directory", "ply", "idna", "certifi", "charset-normalizer", "lxml", "python-gitlab", "six", "urllib3"}
     # packages = {"pyasn1_modules"}
     # packages = {'molecule[lint, docker, ansible]', 'twine'}
     # packages = {"molecule", "twine", "yamllint", "molecule-docker"}
 
+    packages = {"molecule[docker,lint,ansible,all]==2.22"}
     packages = {"requests"}
     for package in packages:
         package_info = pip_download_and_return(package)
         pprint(package_info)
+        extract_urls_v2(package_info)
     exit(0)
 
 

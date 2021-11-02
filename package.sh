@@ -4,9 +4,7 @@ find_version () {
         version=$(ls --format=single-column "$1" | grep -E -oi '(-[0-9]+-)|([-][0-9a-z]+[.][0-9a-z]*[.]*[0-9a-z]*[.]*[0-9a-z]*((-)|(.tar.gz)|(.zip)|(.tar.bz2)|(.tgz)))' | sed -E 's/-|.tar.gz|.tar.bz2|.zip|.tgz//g')
 }
 
-
 PACKAGE=$1
-
 
 mkdir $PACKAGE
 cd $PACKAGE

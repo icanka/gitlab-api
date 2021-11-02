@@ -3,18 +3,15 @@ import os
 import re
 import subprocess
 from pathlib import Path
-from pprint import pprint
-
-import requests
 
 import parseJson
+import requests
 from json_helper import *
 
 
 def extract_package_info_dictionary(json_data, pkg_version, python_version, package_type, package_name):
     for i_json in search_key_recursive_yield(json_data, "releases"):
         count = 0
-
 
         for release_version in iterate_value(i_json):
             flatten_dict = {}
@@ -173,18 +170,11 @@ def if_extra(item):
     return True if item == "extra" else False
 
 
-
-
-
-
-
-
-
 def pip_download_and_return(package_name):
     package_list = []
     data_folder = Path(package_name)
     file_to_open = data_folder / "requirements.txt"
-    packages_sh = subprocess.run(["./package.sh", package_name])
+    return_code = subprocess.run(["./package.sh", package_name], timeout=180).returncode
     file = open(file_to_open, "r")
     lines = file.readlines()
     for line in lines:
@@ -195,20 +185,15 @@ def pip_download_and_return(package_name):
     return package_list
 
 
-
-
-
-
 # Iterate through versions on the returned JSON response. Return the matching ones.
 def extract_package_info_dictionary_v2(json_data, package_version):
     for i_json in search_key_recursive_yield(json_data, "releases"):
-         for release_version in iterate_value(i_json):
+        for release_version in iterate_value(i_json):
             flatten_dict = {}
             version_number = list(release_version)[0]
             # We found our desired version
             if version_number == package_version:
                 for specific_release in iterate_value(release_version):
-
                     version = search_key_recursive_return(specific_release, "python_version")
                     type = search_key_recursive_return(specific_release, "packagetype")
                     sha256_digest = search_key_recursive_return(specific_release, "sha256")

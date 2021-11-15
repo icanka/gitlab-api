@@ -8,48 +8,11 @@ import parseJson
 import requests
 from json_helper import *
 
-
-def extract_package_info_dictionary(json_data, pkg_version, python_version, package_type, package_name):
-    for i_json in search_key_recursive_yield(json_data, "releases"):
-        count = 0
-
-        for release_version in iterate_value(i_json):
-            flatten_dict = {}
-            version_number = list(release_version)[0]
-            # Unpack each releases' value
-            for specific_release in iterate_value(release_version):
-                version = search_key_recursive_return(
-                    specific_release, "python_version"
-                )
-
-                # Commented out; only check package type dont check python_version.
-                # if version in python_version:
-                #     break
-
-                type = search_key_recursive_return(specific_release, "packagetype")
-
-                # if type in package_type:
-
-                sha256_digest = search_key_recursive_return(specific_release, "sha256")
-
-                url = search_key_recursive_return(specific_release, "url")
-                flatten_dict = {
-                    "version_number": version_number,
-                    "python_version": version,
-                    "package_type": type,
-                    "sha256_digest": sha256_digest,
-                    "url": url,
-                }
-
-                yield flatten_dict
-
-
 # TODO: Do not split required dists with space as sometime the string is like
 #  importlib_metadata;python_version<'3.8'
 #  zipp;python_version<'3.8'
 # coverage[toml]
 # requirementslib;
-
 
 def extract_dependency(
         json_data,
@@ -59,17 +22,6 @@ def extract_dependency(
 
 ):
     dist_set = set()
-    # for i_json in search_key_recursive_yield(json_data, "releases"):
-    #     for release_version in iterate_value(i_json):
-    #         for k in release_version.keys():
-    #             print(package_name)
-    #             package = package_name + "==" + k
-    #             package = {package}
-    #             print(package)
-    #             for dependency in extract_dependency_pip(package):
-    #                 dist_set.add(dependency)
-    # print(dist_set)
-
     requires_dist = search_key_recursive_return(json_data, "requires_dist")
 
     if requires_dist is not None:
@@ -93,7 +45,6 @@ def extract_dependency(
 
     return dist_set
 
-
 def extract_dependency_pip(package):
     package_set = set()
 
@@ -109,7 +60,6 @@ def extract_dependency_pip(package):
             package_set.add(package)
 
     return package_set
-
 
 def download_file(url, sha256_digest=None):
     filename = url.rsplit("/", 1)[1]
@@ -156,10 +106,6 @@ def log(log_text, log_file, log_dir):
         if not log_text.endswith("\n"):
             log_text += "\n"
         file.write(log_text)
-
-
-def save_json_response(json_data):
-    package_name = "test"
 
 
 def if_empty(item):

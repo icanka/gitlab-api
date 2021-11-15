@@ -1,6 +1,5 @@
 import os
 from datetime import datetime
-from pprint import pprint
 
 import pypi_helper
 from new_main import extract_urls_v2
@@ -8,20 +7,7 @@ from progress_bar import printProgressBar
 from pypi_helper import download_file
 from pypi_helper import pip_download_and_return
 
-# GET /pypi/<project_name>/json
-
 if __name__ == "__main__":
-    # packages = {"wheel", "pip", "setuptools"}
-    # packages = {"flake8", "pre-commit", "yamllint", "molecule-docker"}
-    # packages = {"yamllint", "molecule-docker", "twine"}
-    # packages = {"webencodings", "cffi", "pycparser", "arrow", "bracex", "Cerberus", "pathspec", "PyNaCl", "python_dateutil", "resolvelib", "ruamel.yaml.clib"}
-    # packages = {"dnspython", "pyasn1","pyasn1-modules", "python-ldap", "requests-toolbelt", "requests", "python-active-directory", "ply", "idna", "certifi", "charset-normalizer", "lxml", "python-gitlab", "six", "urllib3"}
-    # packages = {"pyasn1_modules"}
-    # packages = {'molecule[lint, docker, ansible]', 'twine'}
-    # packages = {"molecule", "twine", "yamllint", "molecule-docker"}
-    # packages = {"molecule[docker,lint,ansible,all]==2.22"}
-    # packages = {"requests"}
-
     url_list = []
     downloaded_urls = set()
     failed_urls = set()
@@ -35,7 +21,7 @@ if __name__ == "__main__":
     log_dir = base_path
     cwd = os.getcwd()
 
-    packages = {"molecule[docker,lint,ansible,all]==2.22"}
+    packages = {"molecule[docker]"}
     packages_directory = os.path.join(base_path, "packages")
 
     for package in packages:

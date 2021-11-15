@@ -4,9 +4,11 @@ import re
 import subprocess
 from pathlib import Path
 
-import parseJson
 import requests
+
+import parseJson
 from json_helper import *
+
 
 # TODO: Do not split required dists with space as sometime the string is like
 #  importlib_metadata;python_version<'3.8'
@@ -45,6 +47,7 @@ def extract_dependency(
 
     return dist_set
 
+
 def extract_dependency_pip(package):
     package_set = set()
 
@@ -60,6 +63,7 @@ def extract_dependency_pip(package):
             package_set.add(package)
 
     return package_set
+
 
 def download_file(url, sha256_digest=None):
     filename = url.rsplit("/", 1)[1]

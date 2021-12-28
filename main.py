@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from pprint import pprint
 
 import pypi_helper
 from new_main import extract_urls_v2
@@ -8,7 +9,7 @@ from pypi_helper import download_file
 from pypi_helper import pip_download_and_return
 
 if __name__ == "__main__":
-    url_list = []
+    package_info_list = set()
     downloaded_urls = set()
     failed_urls = set()
     url_log_file = "url_log" + "_" + datetime.today().strftime("%M%H%d%m%y") + ".log"
@@ -21,13 +22,23 @@ if __name__ == "__main__":
     log_dir = base_path
     cwd = os.getcwd()
 
-    packages = {"molecule[docker]"}
+    # packages = {"Flask", "SQLAlchemy", "mysqldb-wrapper", "Flask-MySQLdb", "pytest",
+    #             "PyGreSQL", "pyquery", "pipenv", "black", "selenium", "Twisted", "bokeh", "fabric2", "Pillow",
+    #             "yarn.build", "molecule[docker,lint,ansible]"}
+    packages = {"ansible-lint"}
+
     packages_directory = os.path.join(base_path, "packages")
 
+
+    # TODO: Muhtemelen url_list icerisinde duplicate itemler var
     for package in packages:
         package_info = pip_download_and_return(package)
+        for item in package_info:
+            if item: package_info_list.add(tuple(item))
         os.remove(package + '/requirements.txt')
-        url_list = extract_urls_v2(package_info)
+
+    url_list = extract_urls_v2(package_info_list)
+    pprint(len(url_list))
 
     if os.path.exists(packages_directory) is False:
         os.makedirs(packages_directory)

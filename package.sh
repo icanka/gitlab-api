@@ -21,5 +21,6 @@ while read p; do
   find_version $file
   echo $p==$version >> requirements.txt
 done < package_list.txt
+#cd .. && rm -rf $PACKAGE
 rm package_list.txt
 

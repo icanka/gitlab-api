@@ -25,7 +25,7 @@ if __name__ == "__main__":
     # packages = {"Flask", "SQLAlchemy", "mysqldb-wrapper", "Flask-MySQLdb", "pytest",
     #             "PyGreSQL", "pyquery", "pipenv", "black", "selenium", "Twisted", "bokeh", "fabric2", "Pillow",
     #             "yarn.build", "molecule[docker,lint,ansible]"}
-    packages = {"ansible-lint"}
+    packages = {"docker", "docker-compose"}
 
     packages_directory = os.path.join(base_path, "packages")
 

@@ -19,6 +19,6 @@ def extract_urls_v2(
         if r.status_code == 200:
             json_data = r.json()
             # Pass the returned JSON and the desired package version
-            for package_dict in extract_package_info_dictionary_v2(json_data, package[1], download_all=False):
+            for package_dict in extract_package_info_dictionary_v2(json_data, package[1], download_all=True):
                 url_list.append(package_dict)
     return url_list

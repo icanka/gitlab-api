@@ -10,7 +10,7 @@ mkdir $PACKAGE
 cd $PACKAGE
 
 #pip download "$PACKAGE" | grep Collecting | cut -d' ' -f2 | grep -Ev "$PACKAGE(~|=|\!|>|<|$)" | grep -oi '^[a-z0-9_.]*[-]*[a-z]*[-]*[a-z]*[-]*' | sed 's/-$//' > package_list.txt
-python3.9 -m pip download "$PACKAGE" | grep Collecting | cut -d' ' -f2 | grep -oi '^[a-z0-9_.]*[-]*[a-z]*[-]*[a-z]*[-]*' | sed 's/-$//' > package_list.txt
+python3 -m pip download "$PACKAGE" | grep Collecting | cut -d' ' -f2 | grep -oi '^[a-z0-9_.]*[-]*[a-z]*[-]*[a-z]*[-]*' | sed 's/-$//' > package_list.txt
 
 while read p; do
   pkg_file=$(echo "$p" | sed -E 's/-/_/g')

@@ -8,6 +8,7 @@ import requests
 
 import parseJson
 from json_helper import *
+from pprint import pprint
 
 
 # TODO: Do not split required dists with space as sometime the string is like
@@ -136,19 +137,40 @@ def pip_download_and_return(package_name):
 
 
 # Iterate through versions on the returned JSON response. Return the matching ones.
-def extract_package_info_dictionary_v2(json_data, package_version, download_all=False):
+def extract_package_info_dictionary_v2(json_data, package_version, download_all=True, package_type="bdist_wheel,sdist"):
     for i_json in search_key_recursive_yield(json_data, "releases"):
         for release_version in iterate_value(i_json):
             flatten_dict = {}
             version_number = list(release_version)[0]
+            
             # We found our desired version
             if not download_all:
                 if version_number == package_version:
                     for specific_release in iterate_value(release_version):
-                        version = search_key_recursive_return(specific_release, "python_version")
+                        filename = search_key_recursive_return(specific_release, "filename")
                         type = search_key_recursive_return(specific_release, "packagetype")
-                        sha256_digest = search_key_recursive_return(specific_release, "sha256")
-                        url = search_key_recursive_return(specific_release, "url")
+            
+                        if (package_type.__contains__(type)) and (not filename.__contains__("macosx")) and (not filename.__contains__("win32")) and (not filename.__contains__("aarch64")) and (not filename.__contains__("i686")) and (not filename.__contains__("arm64")) and (not filename.__contains__("ppc64le")) :
+                            version = search_key_recursive_return(specific_release, "python_version")
+                            sha256_digest = search_key_recursive_return(specific_release, "sha256")
+                            url = search_key_recursive_return(specific_release, "url")
+                            flatten_dict = {
+                                "version_number": version_number,
+                                "python_version": version,
+                                "package_type": type,
+                                "sha256_digest": sha256_digest,
+                                "url": url,
+                            }
+                            yield flatten_dict
+            else:
+                for specific_release in iterate_value(release_version):
+                    version = search_key_recursive_return(specific_release, "python_version")
+                    type = search_key_recursive_return(specific_release, "packagetype")
+                    sha256_digest = search_key_recursive_return(specific_release, "sha256")
+                    url = search_key_recursive_return(specific_release, "url")
+                    filename = search_key_recursive_return(specific_release, "filename")
+
+                    if (package_type.__contains__(type)) and (not filename.__contains__("macosx")) and (not filename.__contains__("win32")) and (not filename.__contains__("aarch64")) and (not filename.__contains__("i686")) and (not filename.__contains__("arm64")) and (not filename.__contains__("ppc64le")) :
                         flatten_dict = {
                             "version_number": version_number,
                             "python_version": version,
@@ -157,18 +179,4 @@ def extract_package_info_dictionary_v2(json_data, package_version, download_all=
                             "url": url,
                         }
                         yield flatten_dict
-            else:
-                for specific_release in iterate_value(release_version):
-                    version = search_key_recursive_return(specific_release, "python_version")
-                    type = search_key_recursive_return(specific_release, "packagetype")
-                    sha256_digest = search_key_recursive_return(specific_release, "sha256")
-                    url = search_key_recursive_return(specific_release, "url")
-                    flatten_dict = {
-                        "version_number": version_number,
-                        "python_version": version,
-                        "package_type": type,
-                        "sha256_digest": sha256_digest,
-                        "url": url,
-                    }
-                    yield flatten_dict
 

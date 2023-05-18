@@ -22,11 +22,14 @@ if __name__ == "__main__":
     log_dir = base_path
     cwd = os.getcwd()
 
-    # packages = {"Flask", "SQLAlchemy", "mysqldb-wrapper", "Flask-MySQLdb", "pytest",
+    #packages = {"Flask", "SQLAlchemy", "mysqldb-wrapper", "Flask-MySQLdb", "pytest",
     #             "PyGreSQL", "pyquery", "pipenv", "black", "selenium", "Twisted", "bokeh", "fabric2", "Pillow",
-    #             "yarn.build", "molecule[docker,lint,ansible]"}
-    packages = {"docker", "docker-compose"}
-
+    #             "yarn.build"}
+    #packages = {"atlassian-python-api", "ldap3", "python-ldap", "jinja2", "python-gitlab"}
+    #packages = {"twine"}
+    #packages = {"pandas[excel,html,xml,mysql,clipboard,compression]==2.0.1", "PyQt-builder", "PyQt5-sip", "sip"
+    # }
+    packages = {"ansible"}
     packages_directory = os.path.join(base_path, "packages")
 
 

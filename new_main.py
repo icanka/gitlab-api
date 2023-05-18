@@ -9,6 +9,7 @@ def extract_urls_v2(
         package_list
 ):
     url_list = []
+    res = []
     base_url = "https://pypi.org/pypi/package_name/json"
 
     for package in package_list:
@@ -19,6 +20,8 @@ def extract_urls_v2(
         if r.status_code == 200:
             json_data = r.json()
             # Pass the returned JSON and the desired package version
-            for package_dict in extract_package_info_dictionary_v2(json_data, package[1], download_all=True):
+            for package_dict in extract_package_info_dictionary_v2(json_data, package[1], download_all=False):
                 url_list.append(package_dict)
-    return url_list
+            res = url_list[-40:]
+            print(f"last packages 5 element {res}")
+    return res
